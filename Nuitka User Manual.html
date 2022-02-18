@@ -136,7 +136,7 @@
                       class="admonition-for-python-3-3-3-4-and-only-those-we-need-other-python-version-as-a-compile-time-dependency admonition">
                       <p class="admonition-title"><em>仅</em> 对于 Python 3.3/3.4 版本，我们需要其他 Python 版本作为编译时的依赖项</p>
                       <p>Nuitka 本身完全兼容所有列出的版本，但是作为内部使用的工具 Scons 并不完全兼容。</p>
-                      <p>对于这些版本，您还 <em>需要</em> 安装 Python2 或 python3.5 或更高版本，但仅在编译期间。这是用于协调 C 编译的 Scons，它不支持与 Nuitka 相同的
+                      <p>对于这些版本，您还 <em>需要</em> 安装 Python2 或 Python3.5 或更高版本，但仅在编译期间。这是用于协调 C 编译的 Scons，它不支持与 Nuitka 相同的
                         Python 版本。</p>
                       <p>此外，在 Windows 上，不能使用 Python2 因为 <code class="docutils literal notranslate"><span class="pre">clcache</span></code>
                         不能使用它，需要安装 Python 3.5 或更高版本。</p>
@@ -183,8 +183,8 @@
                                                                        href="Nuitka%20User%20Manual.html#id1">1</a></span>
                   </dt>
                   <dd><p>gcc 5.x 或更高版本或任何版本的 clang 都支持 C11 。</p>
-                    <p>MSVC 编译器还没有这样做。但是作为一种解决方法，由于 c++ 03 语言标准与 C11 有很多重叠，所以在 C
-                      编译器太老的地方，它就会被使用。Nuitka 过去需要一个 c++ 编译器，但它现在已经不需要了。</p>
+                    <p>MSVC 编译器还没有这样做。但是作为一种解决方法，由于 C++03 语言标准与 C11 有很多重叠，所以在 C
+                      编译器太老的地方，它就会被使用。Nuitka 过去需要一个 C++ 编译器，但它现在已经不需要了。</p>
                   </dd>
                   <dt class="label" id="id4"><span class="brackets"><a class="fn-backref"
                                                                        href="Nuitka%20User%20Manual.html#id2">2</a></span>
@@ -227,8 +227,8 @@
                 <p>Nuitka 有 <code class="docutils literal notranslate"><span
                   class="pre">--help</span></code> 选项来输出它可以做什么:</p>
                 <div class="highlight-bash notranslate">
-                  <div class="highlight"><pre id="codecell0"><span></span>nuitka --help
-</pre>
+                  <div class="highlight">
+                    <pre id="codecell0"><span></span>nuitka --help</pre>
                     <button class="copybtn o-tooltip--left" data-tooltip="Copy"
                             data-clipboard-target="#codecell0">
                       <svg xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +246,7 @@
                 <p><code class="docutils literal notranslate"><span
                   class="pre">nuitka-run</span></code> 命令与 <code
                   class="docutils literal notranslate"><span class="pre">nuitka</span></code> 相同，但是有不同的默认值，它尝试编译并直接执行一个
-                  Python 脚本::</p>
+                  Python 脚本:</p>
                 <div class="highlight-bash notranslate">
                   <div class="highlight"><pre id="codecell1"><span></span>nuitka-run --help
 </pre>
@@ -349,7 +349,7 @@
 def</span> <span class="nf">talk</span><span class="p">(</span><span class="n">message</span><span
                         class="p">):</span>
     <span class="k">return</span> <span class="s2">"Talk "</span> <span
-                        class="o">+</span> <span class="n">message</span>
+                          class="o">+</span> <span class="n">message</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="nb">print</span><span
@@ -378,10 +378,9 @@ def</span> <span class="nf">talk</span><span class="p">(</span><span class="n">m
                 </section>
                 <section id="test-your-program">
                   <h4>测试你的程序<a class="headerlink"
-                                          href="Nuitka%20User%20Manual.html#test-your-program"
-                                          title="Permalink to this headline"></a></h4>
-                  <p>Do as you normally would. Running Nuitka on code that works incorrectly
-                    is not easier to debug.</p>
+                               href="Nuitka%20User%20Manual.html#test-your-program"
+                               title="Permalink to this headline"></a></h4>
+                  <p>按照您通常的方式运行。在工作不正常的代码上运行 Nuitka 并不容易调试。</p>
                   <div class="highlight-bash notranslate">
                     <div class="highlight"><pre id="codecell3"><span></span>python hello.py
 </pre>
@@ -402,9 +401,9 @@ def</span> <span class="nf">talk</span><span class="p">(</span><span class="n">m
                 </section>
                 <hr class="docutils">
                 <section id="build-it-using">
-                  <h4>Build it using<a class="headerlink"
-                                       href="Nuitka%20User%20Manual.html#build-it-using"
-                                       title="Permalink to this headline"></a></h4>
+                  <h4>打包<a class="headerlink"
+                           href="Nuitka%20User%20Manual.html#build-it-using"
+                           title="Permalink to this headline"></a></h4>
                   <div class="highlight-bash notranslate">
                     <div class="highlight"><pre id="codecell4"><span></span>python -m nuitka hello.py
 </pre>
@@ -423,46 +422,38 @@ def</span> <span class="nf">talk</span><span class="p">(</span><span class="n">m
                     </div>
                   </div>
                   <div class="admonition note">
-                    <p class="admonition-title">Note</p>
-                    <p>This will prompt you to download a C caching tool (to speed up
-                      repeated compilation of generated C code) and a MinGW64 based C
-                      compiler unless you have a suitable MSVC installed. Say <code
-                        class="docutils literal notranslate"><span
-                        class="pre">yes</span></code> to
-                      both those questions.</p>
+                    <p class="admonition-title">注意</p>
+                    <p>这将提示您下载一个 C 缓存工具(以加速生成的 C 代码的重复编译)和一个基于 MinGW64的 C 编译器，除非您安装了合适的 MSVC。这两个问题都选择 <code
+                      class="docutils literal notranslate"><span class="pre">yes</span></code> 。</p>
                   </div>
                 </section>
                 <section id="run-it">
-                  <h4>Run it<a class="headerlink"
-                               href="Nuitka%20User%20Manual.html#run-it"
-                               title="Permalink to this headline"></a></h4>
-                  <p>Execute the <code class="docutils literal notranslate"><span class="pre">hello.exe</span></code>
-                    created near <code class="docutils literal notranslate"><span class="pre">hello.py</span></code>.
+                  <h4>运行<a class="headerlink"
+                           href="Nuitka%20User%20Manual.html#run-it"
+                           title="Permalink to this headline"></a></h4>
+                  <p>现在可以执行在 <code class="docutils literal notranslate"><span class="pre">hello.py</span></code>
+                    文件附近创建的 <code class="docutils literal notranslate"><span class="pre">hello.exe</span></code> 程序了。
                   </p>
                 </section>
                 <section id="distribute">
-                  <h4>Distribute<a class="headerlink"
-                                   href="Nuitka%20User%20Manual.html#distribute"
-                                   title="Permalink to this headline"></a></h4>
-                  <p>To distribute, build with <code class="docutils literal notranslate"><span
-                    class="pre">--standalone</span></code> option, which will not output
-                    a single executable, but a whole folder. Copy the resulting
+                  <h4>分发<a class="headerlink"
+                           href="Nuitka%20User%20Manual.html#distribute"
+                           title="Permalink to this headline"></a></h4>
+                  <p>文件附近创建的 <code class="docutils literal notranslate"><span
+                    class="pre">--standalone</span></code> 选项进行构建，该选项不会输出单个可执行文件，而是输出整个文件夹。复制
                     <code class="docutils literal notranslate"><span
-                      class="pre">hello.dist</span></code> folder to the other machine and run
-                    it.</p>
-                  <p>You may also try <code class="docutils literal notranslate"><span
+                      class="pre">hello.dist</span></code> 文件夹到其他机器就可以运行。</p>
+                  <p>你或许也应该尝试 <code class="docutils literal notranslate"><span
                     class="pre">--onefile</span></code>
-                    which does create a single file, but make
-                    sure that the mere standalone is working, before turning to it, as it
-                    will make the debugging only harder, e.g. in case of missing data files.</p>
+                    ，该选项会创建单个文件，但是在使用该选项之前，请确保单纯的独立工作是可行的，因为这个选项会使得调试更加困难，例如在缺少数据文件的情况下。</p>
                 </section>
               </section>
             </section>
             <section id="use-cases">
-              <h2>Use Cases<a class="headerlink" href="Nuitka%20User%20Manual.html#use-cases"
+              <h2>用例（Use Cases）<a class="headerlink" href="Nuitka%20User%20Manual.html#use-cases"
                               title="Permalink to this headline"></a></h2>
               <section id="use-case-1-program-compilation-with-all-modules-embedded">
-                <h3>Use Case 1 - Program compilation with all modules embedded<a class="headerlink"
+                <h3>用例一 - Program compilation with all modules embedded<a class="headerlink"
                                                                                  href="Nuitka%20User%20Manual.html#use-case-1-program-compilation-with-all-modules-embedded"
                                                                                  title="Permalink to this headline"></a>
                 </h3>
