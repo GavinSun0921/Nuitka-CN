@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)https://nuitka.net/doc/user-manual.html -->
+<!-- saved from url=(0039)Nuitka%20User%20Manual.html -->
 <html class="writer-html5" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +19,7 @@
   <title>Nuitka 用户手册</title>
   <link rel="stylesheet" href="./Nuitka User Manual_files/combined_.css"
         type="text/css">
-  <link rel="canonical" href="https://nuitka.net/doc/user-manual.html">
+  <link rel="canonical" href="Nuitka%20User%20Manual.html">
   <!--[if lt IE 9]>
   <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -35,9 +35,9 @@
     SOURCELINK_SUFFIX: '.txt',
     NAVIGATION_WITH_KEYS: false
   };</script>
-  <script src="./Nuitka User Manual_files/combined_820841e74593a1d9384b6f5b50b4e5c7.js.下载" async=""></script>
-  <script src="./Nuitka User Manual_files/clipboard.min.js.下载" async=""></script>
-  <script src="./Nuitka User Manual_files/copybutton.js.下载" async=""></script>
+  <script src="Nuitka%20User%20Manual_files/combined_.js" async=""></script>
+  <script src="Nuitka%20User%20Manual_files/clipboard.min.js" async=""></script>
+  <script src="Nuitka%20User%20Manual_files/copybutton.js" async=""></script>
   <link rel="index" title="Index" href="https://nuitka.net/genindex.html">
   <link rel="next" title="Support" href="https://nuitka.net/pages/support.html">
   <link rel="prev" title="Nuitka Downloads" href="https://nuitka.net/doc/download.html">
@@ -85,11 +85,11 @@
         <div itemprop="articleBody">
           <section id="nuitka-user-manual">
             <h1>Nuitka 用户手册<a class="headerlink"
-                              href="https://nuitka.net/doc/user-manual.html#nuitka-user-manual"
+                              href="Nuitka%20User%20Manual.html#nuitka-user-manual"
                               title="Permalink to this headline"></a></h1>
             <section id="overview">
               <h2>概览（Overview）<a class="headerlink"
-                                 href="https://nuitka.net/doc/user-manual.html#overview"
+                                 href="Nuitka%20User%20Manual.html#overview"
                                  title="Permalink to this headline"></a></h2>
               <p>如果你对使用 Nuitka 感兴趣、希望了解它的使用用例、查看你期望的内容、Nuitka 的许可协议、依赖需求等，建议你首先阅读本文档。</p>
               <p>Nuitka 是一个 Python 编译器。它使用 Python 编写，可以无缝替换和扩展 Python 解释器。当它与 Python 一起运行时，能够编译与 Python 版本对应的 CPython
@@ -102,15 +102,15 @@
                 都会被还原出来，例如更完整的异常错误信息，不过有一个完全兼容模式可以禁用它。</p>
             </section>
             <section id="usage">
-              <h2>使用（Usage）<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#usage"
+              <h2>使用（Usage）<a class="headerlink" href="Nuitka%20User%20Manual.html#usage"
                               title="Permalink to this headline"></a></h2>
               <section id="requirements">
                 <h3>要求（Requirements）<a class="headerlink"
-                                       href="https://nuitka.net/doc/user-manual.html#requirements"
+                                       href="Nuitka%20User%20Manual.html#requirements"
                                        title="Permalink to this headline"></a></h3>
                 <ul>
                   <li><p>C 编译器：你需要一个支持 C11 或 C++03 的编译器 <a class="footnote-reference brackets"
-                                                           href="https://nuitka.net/doc/user-manual.html#id3"
+                                                           href="Nuitka%20User%20Manual.html#id3"
                                                            id="id1">1</a>
                   </p>
                     <p>目前来看，这需要你使用以下编译器中的一个：</p>
@@ -118,7 +118,7 @@
                       <li><p>在 Windows 上 MinGW64 C11 编译器必须要基于 gcc 11.2 或更高版本。如果没有找到可用的 C 编译器它将会被 <em>自动</em>
                         下载，这是被推荐的一种安装方式，因为 Nuitka 也会为升级它。</p></li>
                       <li><p>在 Windows 上 Visual Studio 2022 或更新版本 <a class="footnote-reference brackets"
-                                                                     href="https://nuitka.net/doc/user-manual.html#id4"
+                                                                     href="Nuitka%20User%20Manual.html#id4"
                                                                      id="id2">2</a>，旧版本也可以使用但仅支持商业用户。配置为使用英语语言包以获得最佳效果（Nuitka过滤垃圾输出，但只针对英语语言）。如果安装了，它将被默认使用。
                       </p></li>
                       <li><p>在所有其他平台上，<code class="docutils literal notranslate"><span class="pre">gcc</span></code>
@@ -169,82 +169,63 @@
                       <p>众所周知，Windows 商店的 Python 肯定不能正常工作，并且在 macOS 上 “pyenv” 可能也不会工作。</p>
                     </div>
                   </li>
-                  <li><p>Operating System: Linux, FreeBSD, NetBSD, macOS X, and Windows (32/64
-                    bits).</p>
-                    <p>Others may work as well. The portability is expected to be generally
-                      good, but the e.g. Scons usage may have to be adapted. Make sure to
-                      match Windows Python and C compiler architecture, or else you will
-                      get cryptic error messages.</p>
+                  <li><p>操作系统: Linux, FreeBSD, NetBSD, macOS X, and Windows (32/64 位).</p>
+                    <p>其他的操作系统可能也能正常工作。它的可移植性一般来说会很好，但是对于诸如 Scons 的使用可能需要进行调整。确保与 Windows
+                      Python 和 C 编译器架构相匹配，否则你将会得到晦涩难懂的错误消息。</p>
                   </li>
-                  <li><p>Architectures: x86, x86_64 (amd64), and arm, likely many more</p>
-                    <p>Other architectures are expected to also work, out of the box, as
-                      Nuitka is generally not using any hardware specifics. These are just
-                      the ones tested and known to be good. Feedback is welcome. Generally,
-                      the architectures that Debian supports can be considered good and
-                      tested too.</p>
+                  <li><p>架构: x86、x86_64 (amd64) 和 arm，可能更多</p>
+                    <p>由于 Nuitka 通常不使用任何硬件细节，其他架构也有望工作，开箱即用。这些只是经过测试并被认为是好的。反馈是受欢迎的。一般来说，Debian
+                      支持的体系结构也可以被认为是好的，也可以进行测试。</p>
                   </li>
                 </ul>
                 <dl class="footnote brackets">
                   <dt class="label" id="id3"><span class="brackets"><a class="fn-backref"
-                                                                       href="https://nuitka.net/doc/user-manual.html#id1">1</a></span>
+                                                                       href="Nuitka%20User%20Manual.html#id1">1</a></span>
                   </dt>
-                  <dd><p>Support for this C11 is a given with gcc 5.x or higher or any clang
-                    version.</p>
-                    <p>The MSVC compiler doesn’t do it yet. But as a workaround, as the C++03
-                      language standard is very overlapping with C11, it is then used instead
-                      where the C compiler is too old. Nuitka used to require a C++ compiler
-                      in the past, but it changed.</p>
+                  <dd><p>gcc 5.x 或更高版本或任何版本的 clang 都支持 C11 。</p>
+                    <p>MSVC 编译器还没有这样做。但是作为一种解决方法，由于 c++ 03 语言标准与 C11 有很多重叠，所以在 C
+                      编译器太老的地方，它就会被使用。Nuitka 过去需要一个 c++ 编译器，但它现在已经不需要了。</p>
                   </dd>
                   <dt class="label" id="id4"><span class="brackets"><a class="fn-backref"
-                                                                       href="https://nuitka.net/doc/user-manual.html#id2">2</a></span>
+                                                                       href="Nuitka%20User%20Manual.html#id2">2</a></span>
                   </dt>
-                  <dd><p>Download for free from
+                  <dd><p>点击链接免费下载
                     <a class="reference external"
                        href="https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx"
                        target="_blank">https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx</a>
-                    (the community editions work just fine).</p>
-                    <p>The latest version is recommended but not required. On the other hand,
-                      there is no need to except pre-Windows 10 support, and they might work
-                      for you, but support of these configurations is only available to
-                      commercial users.</p>
+                    （社区版本就足够了）。</p>
+                    <p>建议使用最新版本，但不是必需的。另一方面，除了 Windows 10 之前的支持外，没有必要这样做，它们可能适合你，但这些配置的支持只对商业用户可用。</p>
                   </dd>
                 </dl>
               </section>
               <section id="command-line">
-                <h3>Command Line<a class="headerlink"
-                                   href="https://nuitka.net/doc/user-manual.html#command-line"
-                                   title="Permalink to this headline"></a></h3>
-                <p>The recommended way of executing Nuitka is <code
+                <h3>命令行（Command Line）<a class="headerlink"
+                                        href="Nuitka%20User%20Manual.html#command-line"
+                                        title="Permalink to this headline"></a></h3>
+                <p>推荐的执行 Nuitka 的方式是 <code class="docutils literal notranslate"><span
+                  class="pre">&lt;the_right_python&gt;</span> <span class="pre">-m</span><span class="pre">nuitka</span></code>，以绝对确定你使用的是哪一个
+                  Python 解释器，这样更容易匹配Nuitka有什么。
+                </p>
+                <p>执行 Nuitka 的次佳方式是从源代码签出或者存档，没有环境变量变化，最值得注意的是，你根本不需要在 Nuitka 上使用 <code
                   class="docutils literal notranslate"><span
-                  class="pre">&lt;the_right_python&gt;</span> <span class="pre">-m</span>
-                  <span class="pre">nuitka</span></code> to be absolutely certain which Python
-                  interpreter you are
-                  using, so it is easier to match with what Nuitka has.</p>
-                <p>The next best way of executing Nuitka bare that is from a source
-                  checkout or archive, with no environment variable changes, most
-                  noteworthy, you do not have to mess with <code class="docutils literal notranslate"><span
-                    class="pre">PYTHONPATH</span></code> at all for
-                  Nuitka. You just execute the <code class="docutils literal notranslate"><span
-                    class="pre">nuitka</span></code> and <code
-                    class="docutils literal notranslate"><span
-                    class="pre">nuitka-run</span></code> scripts
-                  directly without any changes to the environment. You may want to add the
+                  class="pre">PYTHONPATH</span></code>。你可以直接执行 <code
+                  class="docutils literal notranslate"><span
+                  class="pre">nuitka</span></code> 和 <code
+                  class="docutils literal notranslate"><span
+                  class="pre">nuitka-run</span></code> 脚本而不需要配置环境变量。你可能为了方便想添加
                   <code class="docutils literal notranslate"><span class="pre">bin</span></code>
-                  directory to your <code class="docutils literal notranslate"><span
-                    class="pre">PATH</span></code> for your convenience, but that step
-                  is optional.</p>
-                <p>Moreover, if you want to execute with the right interpreter, in that
-                  case, be sure to execute <code class="docutils literal notranslate"><span
-                    class="pre">&lt;the_right_python&gt;</span> <span
-                    class="pre">bin/nuitka</span></code> and be good.</p>
+                  目录到你的 <code class="docutils literal notranslate"><span
+                    class="pre">PATH</span></code> 里，但这步操作是可选的。</p>
+                <p>此外，如果你想用正确的解释器来执行，在这种情况下，一定要执行 <code class="docutils literal notranslate"><span
+                  class="pre">&lt;the_right_python&gt;</span> <span
+                  class="pre">bin/nuitka</span></code>。</p>
                 <div class="admonition-pick-the-right-interpreter admonition">
-                  <p class="admonition-title">Pick the right Interpreter</p>
-                  <p>If you encounter a <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>
-                    you absolutely most certainly have
-                    picked the wrong interpreter for the program you are compiling.</p>
+                  <p class="admonition-title">选择合适的解释器（Pick the right Interpreter）</p>
+                  <p>如果您遇到 <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>错误，那么您肯定选择了错误的解释器。
+                  </p>
                 </div>
-                <p>Nuitka has a <code class="docutils literal notranslate"><span
-                  class="pre">--help</span></code> option to output what it can do:</p>
+                <p>Nuitka 有 <code class="docutils literal notranslate"><span
+                  class="pre">--help</span></code> 选项来输出它可以做什么:</p>
                 <div class="highlight-bash notranslate">
                   <div class="highlight"><pre id="codecell0"><span></span>nuitka --help
 </pre>
@@ -262,12 +243,10 @@
                     </button>
                   </div>
                 </div>
-                <p>The <code class="docutils literal notranslate"><span
-                  class="pre">nuitka-run</span></code> command is the same as <code
-                  class="docutils literal notranslate"><span class="pre">nuitka</span></code>, but
-                  with a
-                  different default. It tries to compile <em>and</em> directly execute a Python
-                  script:</p>
+                <p><code class="docutils literal notranslate"><span
+                  class="pre">nuitka-run</span></code> 命令与 <code
+                  class="docutils literal notranslate"><span class="pre">nuitka</span></code> 相同，但是有不同的默认值，它尝试编译并直接执行一个
+                  Python 脚本::</p>
                 <div class="highlight-bash notranslate">
                   <div class="highlight"><pre id="codecell1"><span></span>nuitka-run --help
 </pre>
@@ -285,117 +264,103 @@
                     </button>
                   </div>
                 </div>
-                <p>This option that is different is <code class="docutils literal notranslate"><span
-                  class="pre">--run</span></code>, and passing on arguments
-                  after the first non-option to the created binary, so it is somewhat more
-                  similar to what plain <code class="docutils literal notranslate"><span
-                    class="pre">python</span></code>
-                  will do.</p>
+                <p>不同的选项就是 <code class="docutils literal notranslate"><span class="pre">--run</span></code>，并且将参数传递到创建的二进制文件的第一个非选项之后，因此它在某种程度上更类似于普通
+                  <code class="docutils literal notranslate"><span class="pre">python</span></code>会做的事情。</p>
               </section>
               <section id="installation">
-                <h3>Installation<a class="headerlink"
-                                   href="https://nuitka.net/doc/user-manual.html#installation"
-                                   title="Permalink to this headline"></a></h3>
-                <p>For most systems, there will be packages on the <a class="reference external"
-                                                                      href="https://nuitka.net/doc/download.html">download
-                  page</a> of Nuitka. But you can also
-                  install it from source code as described above, but also like any other
-                  Python program it can be installed via the normal <code
+                <h3>安装（Installation）<a class="headerlink"
+                                       href="Nuitka%20User%20Manual.html#installation"
+                                       title="Permalink to this headline"></a></h3>
+                <p>对于大部分系统在<a class="reference external" href="https://nuitka.net/doc/download.html">下载页面</a>都有 Nuitka
+                  的安装包。但是你也可以像上面描述的那样从源代码安装它，而且和其他任何 Python 程序一样，它也可以通过普通的 <code
                     class="docutils literal notranslate"><span class="pre">python</span> <span
-                    class="pre">setup.py</span>
-                    <span class="pre">install</span></code> routine.</p>
+                    class="pre">setup.py</span><span class="pre">install</span></code> 进行安装。</p>
               </section>
               <section id="license">
-                <h3>License<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#license"
-                              title="Permalink to this headline"></a></h3>
-                <p>Nuitka is licensed under the Apache License, Version 2.0; you may not
-                  use it except in compliance with the License.</p>
-                <p>You may obtain a copy of the License at
-                  <a class="reference external" href="https://www.apache.org/licenses/LICENSE-2.0"
-                     target="_blank">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-                <p>Unless required by applicable law or agreed to in writing, software
-                  distributed under the License is distributed on an “AS IS” BASIS,
-                  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                  See the License for the specific language governing permissions and
-                  limitations under the License.</p>
+                <h3>许可协议（License）<a class="headerlink" href="Nuitka%20User%20Manual.html#license"
+                                    title="Permalink to this headline"></a></h3>
+                <p>Nuitka 许可协议为 Apache License, Version 2.0; 您不能使用它，除非符合许可证。</p>
+                <p>您可以在以下网址获得许可协议的副本 <a class="reference external" href="https://www.apache.org/licenses/LICENSE-2.0"
+                                        target="_blank">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+                <p>除非适用法律要求或书面同意，在许可项下发布的软件是在“按现状”的基础上发布的，没有任何明示或默示的保证或条件。有关许可证下管理权限和限制的特定语言，请参阅许可证。（Unless required by
+                  applicable law or agreed to in writing, software distributed under the License is distributed on an
+                  “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+                  License for the specific language governing permissions and limitations under the License.）</p>
               </section>
             </section>
             <section id="tutorial-setup-and-build-on-windows">
-              <h2>Tutorial Setup and build on Windows<a class="headerlink"
-                                                        href="https://nuitka.net/doc/user-manual.html#tutorial-setup-and-build-on-windows"
-                                                        title="Permalink to this headline"></a></h2>
-              <p>This is basic steps if you have nothing installed, of course if you have
-                any of the parts, just skip it.</p>
+              <h2>在 Windows 上的配置与构建教程（Tutorial Setup and build on Windows）<a class="headerlink"
+                                                                             href="Nuitka%20User%20Manual.html#tutorial-setup-and-build-on-windows"
+                                                                             title="Permalink to this headline"></a>
+              </h2>
+              <p>如果您没有安装任何组件，这是基本步骤，当然，如果您有任何部分，就跳过它。</p>
               <section id="setup">
-                <h3>Setup<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#setup"
-                            title="Permalink to this headline"></a></h3>
+                <h3>配置（Setup）<a class="headerlink" href="Nuitka%20User%20Manual.html#setup"
+                                title="Permalink to this headline"></a></h3>
                 <section id="install-python">
-                  <h4>Install Python<a class="headerlink"
-                                       href="https://nuitka.net/doc/user-manual.html#install-python"
-                                       title="Permalink to this headline"></a></h4>
+                  <h4>安装 Python<a class="headerlink"
+                                  href="Nuitka%20User%20Manual.html#install-python"
+                                  title="Permalink to this headline"></a></h4>
                   <ul class="simple">
-                    <li><p>Download and install from <a class="reference external"
-                                                        href="https://www.python.org/downloads/windows"
-                                                        target="_blank">https://www.python.org/downloads/windows</a>
+                    <li><p>从 <a class="reference external" href="https://www.python.org/downloads/windows"
+                                target="_blank">https://www.python.org/downloads/windows</a> 下载并安装。
                     </p></li>
-                    <li><p>Select one of <code class="docutils literal notranslate"><span
-                      class="pre">Windows</span> <span class="pre">x86-64</span> <span
-                      class="pre">web-based</span> <span class="pre">installer</span></code>
-                      (64 bits Python,
-                      recommended) or <code class="docutils literal notranslate"><span
-                        class="pre">x86</span> <span class="pre">executable</span></code>
-                      (32 bits Python) installer.</p></li>
-                    <li><p>Verify using command <code class="docutils literal notranslate"><span
-                      class="pre">python</span> <span class="pre">--version</span></code>.</p>
+                    <li><p>选择一个 <code class="docutils literal notranslate"><span class="pre">Windows</span> <span
+                      class="pre">x86-64</span> <span class="pre">web-based</span> <span
+                      class="pre">installer</span></code>(64 位 Python，<strong>推荐</strong>)或者 <code
+                      class="docutils literal notranslate"><span class="pre">x86</span> <span
+                      class="pre">executable</span></code>(32 位 Python) 安装器（installer）。</p></li>
+                    <li><p>使用命令验证 <code class="docutils literal notranslate"><span
+                      class="pre">python</span> <span class="pre">--version</span></code>。</p>
                     </li>
                   </ul>
                 </section>
                 <section id="install-nuitka">
-                  <h4>Install Nuitka<a class="headerlink"
-                                       href="https://nuitka.net/doc/user-manual.html#install-nuitka"
-                                       title="Permalink to this headline"></a></h4>
+                  <h4>安装 Nuitka<a class="headerlink"
+                                  href="Nuitka%20User%20Manual.html#install-nuitka"
+                                  title="Permalink to this headline"></a></h4>
                   <ul class="simple">
                     <li><p><code class="docutils literal notranslate"><span
                       class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span>
                       <span class="pre">install</span> <span class="pre">nuitka</span></code></p>
                     </li>
-                    <li><p>Verify using command <code class="docutils literal notranslate"><span
+                    <li><p>使用命令验证 <code class="docutils literal notranslate"><span
                       class="pre">python</span> <span class="pre">-m</span> <span class="pre">nuitka</span>
-                      <span class="pre">--version</span></code></p></li>
+                      <span class="pre">--version</span></code>。</p></li>
                   </ul>
                 </section>
               </section>
               <section id="write-some-code-and-test">
-                <h3>Write some code and test<a class="headerlink"
-                                               href="https://nuitka.net/doc/user-manual.html#write-some-code-and-test"
-                                               title="Permalink to this headline"></a></h3>
+                <h3>写一些代码并测试<a class="headerlink"
+                               href="Nuitka%20User%20Manual.html#write-some-code-and-test"
+                               title="Permalink to this headline"></a></h3>
                 <section id="create-a-folder-for-the-python-code">
-                  <h4>Create a folder for the Python code<a class="headerlink"
-                                                            href="https://nuitka.net/doc/user-manual.html#create-a-folder-for-the-python-code"
-                                                            title="Permalink to this headline"></a>
+                  <h4>为 Python 代码创建一个文件夹<a class="headerlink"
+                                           href="Nuitka%20User%20Manual.html#create-a-folder-for-the-python-code"
+                                           title="Permalink to this headline"></a>
                   </h4>
                   <ul class="simple">
-                    <li><p>mkdir HelloWorld</p></li>
-                    <li><p>make a python file named <strong>hello.py</strong></p></li>
+                    <li><p>创建一个 HelloWorld 文件夹</p></li>
+                    <li><p>创建一个 <strong>hello.py</strong> 的 Python 文件</p></li>
                   </ul>
                   <div class="highlight-python notranslate">
-                    <div class="highlight"><pre id="codecell2"><span></span><span
-                      class="k">def</span> <span class="nf">talk</span><span
-                      class="p">(</span><span class="n">message</span><span
-                      class="p">):</span>
-    <span class="k">return</span> <span class="s2">"Talk "</span> <span class="o">+</span> <span
-                        class="n">message</span>
-
+                    <div class="highlight">
+                      <pre id="codecell2"><span></span><span class="k">
+def</span> <span class="nf">talk</span><span class="p">(</span><span class="n">message</span><span
+                        class="p">):</span>
+    <span class="k">return</span> <span class="s2">"Talk "</span> <span
+                        class="o">+</span> <span class="n">message</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">talk</span><span class="p">(</span><span
-                        class="s2">"Hello World"</span><span class="p">))</span>
-
+    <span class="nb">print</span><span
+                          class="p">(</span><span class="n">talk</span><span class="p">(</span><span class="s2">"Hello World"</span><span
+                          class="p">))</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span
-                        class="s2">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</pre>
+                          class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span
+                          class="p">()</span>
+                      </pre>
                       <button class="copybtn o-tooltip--left" data-tooltip="Copy"
                               data-clipboard-target="#codecell2">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -412,8 +377,8 @@
                   </div>
                 </section>
                 <section id="test-your-program">
-                  <h4>Test your program<a class="headerlink"
-                                          href="https://nuitka.net/doc/user-manual.html#test-your-program"
+                  <h4>测试你的程序<a class="headerlink"
+                                          href="Nuitka%20User%20Manual.html#test-your-program"
                                           title="Permalink to this headline"></a></h4>
                   <p>Do as you normally would. Running Nuitka on code that works incorrectly
                     is not easier to debug.</p>
@@ -438,7 +403,7 @@
                 <hr class="docutils">
                 <section id="build-it-using">
                   <h4>Build it using<a class="headerlink"
-                                       href="https://nuitka.net/doc/user-manual.html#build-it-using"
+                                       href="Nuitka%20User%20Manual.html#build-it-using"
                                        title="Permalink to this headline"></a></h4>
                   <div class="highlight-bash notranslate">
                     <div class="highlight"><pre id="codecell4"><span></span>python -m nuitka hello.py
@@ -469,7 +434,7 @@
                 </section>
                 <section id="run-it">
                   <h4>Run it<a class="headerlink"
-                               href="https://nuitka.net/doc/user-manual.html#run-it"
+                               href="Nuitka%20User%20Manual.html#run-it"
                                title="Permalink to this headline"></a></h4>
                   <p>Execute the <code class="docutils literal notranslate"><span class="pre">hello.exe</span></code>
                     created near <code class="docutils literal notranslate"><span class="pre">hello.py</span></code>.
@@ -477,7 +442,7 @@
                 </section>
                 <section id="distribute">
                   <h4>Distribute<a class="headerlink"
-                                   href="https://nuitka.net/doc/user-manual.html#distribute"
+                                   href="Nuitka%20User%20Manual.html#distribute"
                                    title="Permalink to this headline"></a></h4>
                   <p>To distribute, build with <code class="docutils literal notranslate"><span
                     class="pre">--standalone</span></code> option, which will not output
@@ -494,11 +459,11 @@
               </section>
             </section>
             <section id="use-cases">
-              <h2>Use Cases<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#use-cases"
+              <h2>Use Cases<a class="headerlink" href="Nuitka%20User%20Manual.html#use-cases"
                               title="Permalink to this headline"></a></h2>
               <section id="use-case-1-program-compilation-with-all-modules-embedded">
                 <h3>Use Case 1 - Program compilation with all modules embedded<a class="headerlink"
-                                                                                 href="https://nuitka.net/doc/user-manual.html#use-case-1-program-compilation-with-all-modules-embedded"
+                                                                                 href="Nuitka%20User%20Manual.html#use-case-1-program-compilation-with-all-modules-embedded"
                                                                                  title="Permalink to this headline"></a>
                 </h3>
                 <p>If you want to compile a whole program recursively, and not only the
@@ -592,7 +557,7 @@
               </section>
               <section id="use-case-2-extension-module-compilation">
                 <h3>Use Case 2 - Extension Module compilation<a class="headerlink"
-                                                                href="https://nuitka.net/doc/user-manual.html#use-case-2-extension-module-compilation"
+                                                                href="Nuitka%20User%20Manual.html#use-case-2-extension-module-compilation"
                                                                 title="Permalink to this headline"></a>
                 </h3>
                 <p>If you want to compile a single extension module, all you have to do is
@@ -640,7 +605,7 @@
               </section>
               <section id="use-case-3-package-compilation">
                 <h3>Use Case 3 - Package compilation<a class="headerlink"
-                                                       href="https://nuitka.net/doc/user-manual.html#use-case-3-package-compilation"
+                                                       href="Nuitka%20User%20Manual.html#use-case-3-package-compilation"
                                                        title="Permalink to this headline"></a></h3>
                 <p>If you need to compile a whole package and embed all modules, that is
                   also feasible, use Nuitka like this:</p>
@@ -673,7 +638,7 @@
               </section>
               <section id="use-case-4-program-distribution">
                 <h3>Use Case 4 - Program Distribution<a class="headerlink"
-                                                        href="https://nuitka.net/doc/user-manual.html#use-case-4-program-distribution"
+                                                        href="Nuitka%20User%20Manual.html#use-case-4-program-distribution"
                                                         title="Permalink to this headline"></a></h3>
                 <p>For distribution to other systems, there is the standalone mode which
                   produces a folder for which you can specify <code
@@ -839,7 +804,7 @@ python -m nuitka --onefile program.py
               </section>
               <section id="use-case-5-setuptools-wheels">
                 <h3>Use Case 5 - Setuptools Wheels<a class="headerlink"
-                                                     href="https://nuitka.net/doc/user-manual.html#use-case-5-setuptools-wheels"
+                                                     href="Nuitka%20User%20Manual.html#use-case-5-setuptools-wheels"
                                                      title="Permalink to this headline"></a></h3>
                 <p>If you have a <code class="docutils literal notranslate"><span
                   class="pre">setup.py</span></code>, <code
@@ -1015,10 +980,10 @@ python -m nuitka --onefile program.py
               </section>
             </section>
             <section id="tweaks">
-              <h2>Tweaks<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#tweaks"
+              <h2>Tweaks<a class="headerlink" href="Nuitka%20User%20Manual.html#tweaks"
                            title="Permalink to this headline"></a></h2>
               <section id="icons">
-                <h3>Icons<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#icons"
+                <h3>Icons<a class="headerlink" href="Nuitka%20User%20Manual.html#icons"
                             title="Permalink to this headline"></a></h3>
                 <p>For good looks, you may specify icons. On Windows, you can provide an
                   icon file, a template executable, or a PNG file. All of these will work
@@ -1046,7 +1011,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="splash-screen">
                 <h3>Splash screen<a class="headerlink"
-                                    href="https://nuitka.net/doc/user-manual.html#splash-screen"
+                                    href="Nuitka%20User%20Manual.html#splash-screen"
                                     title="Permalink to this headline"></a></h3>
                 <p>Splash screens are useful when program startup is slow. Onefile startup
                   itself is not slow, but your program may be, and you cannot really know
@@ -1115,18 +1080,18 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
             </section>
             <section id="typical-problems">
               <h2>Typical Problems<a class="headerlink"
-                                     href="https://nuitka.net/doc/user-manual.html#typical-problems"
+                                     href="Nuitka%20User%20Manual.html#typical-problems"
                                      title="Permalink to this headline"></a></h2>
               <section id="memory-issues-and-compiler-bugs">
                 <h3>Memory issues and compiler bugs<a class="headerlink"
-                                                      href="https://nuitka.net/doc/user-manual.html#memory-issues-and-compiler-bugs"
+                                                      href="Nuitka%20User%20Manual.html#memory-issues-and-compiler-bugs"
                                                       title="Permalink to this headline"></a></h3>
                 <p>Sometimes the C compilers will crash saying they cannot allocate memory
                   or that some input was truncated, or similar error messages, clearly
                   from it. There are several options you can explore here:</p>
                 <section id="ask-nuitka-to-use-less-memory">
                   <h4>Ask Nuitka to use less memory<a class="headerlink"
-                                                      href="https://nuitka.net/doc/user-manual.html#ask-nuitka-to-use-less-memory"
+                                                      href="Nuitka%20User%20Manual.html#ask-nuitka-to-use-less-memory"
                                                       title="Permalink to this headline"></a></h4>
                   <p>There is a dedicated option <code class="docutils literal notranslate"><span
                     class="pre">--low-memory</span></code> which influces decisions of
@@ -1135,7 +1100,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                 </section>
                 <section id="avoid-32-bit-c-compiler-assembler-memory-limits">
                   <h4>Avoid 32 bit C compiler/assembler memory limits<a class="headerlink"
-                                                                        href="https://nuitka.net/doc/user-manual.html#avoid-32-bit-c-compiler-assembler-memory-limits"
+                                                                        href="Nuitka%20User%20Manual.html#avoid-32-bit-c-compiler-assembler-memory-limits"
                                                                         title="Permalink to this headline"></a>
                   </h4>
                   <p>Do not use a 32 bits compiler, but a 64 bit one. If you are using Python
@@ -1146,7 +1111,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                 </section>
                 <section id="use-lto-compilation-or-not">
                   <h4>Use LTO compilation or not<a class="headerlink"
-                                                   href="https://nuitka.net/doc/user-manual.html#use-lto-compilation-or-not"
+                                                   href="Nuitka%20User%20Manual.html#use-lto-compilation-or-not"
                                                    title="Permalink to this headline"></a></h4>
                   <p>With <code class="docutils literal notranslate"><span
                     class="pre">--lto=yes</span></code> or <code
@@ -1159,7 +1124,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                 </section>
                 <section id="switch-the-c-compiler-to-clang">
                   <h4>Switch the C compiler to clang<a class="headerlink"
-                                                       href="https://nuitka.net/doc/user-manual.html#switch-the-c-compiler-to-clang"
+                                                       href="Nuitka%20User%20Manual.html#switch-the-c-compiler-to-clang"
                                                        title="Permalink to this headline"></a></h4>
                   <p>People have reported that programs that fail to compile with gcc due to
                     its bugs or memory usage work fine with clang on Linux. On Windows, this
@@ -1170,7 +1135,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                 </section>
                 <section id="add-a-larger-swap-file-to-your-embedded-linux">
                   <h4>Add a larger swap file to your embedded Linux<a class="headerlink"
-                                                                      href="https://nuitka.net/doc/user-manual.html#add-a-larger-swap-file-to-your-embedded-linux"
+                                                                      href="Nuitka%20User%20Manual.html#add-a-larger-swap-file-to-your-embedded-linux"
                                                                       title="Permalink to this headline"></a>
                   </h4>
                   <p>On systems with not enough RAM, you need to use swap space. Running out
@@ -1181,7 +1146,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                 </section>
                 <section id="limit-the-amount-of-compilation-jobs">
                   <h4>Limit the amount of compilation jobs<a class="headerlink"
-                                                             href="https://nuitka.net/doc/user-manual.html#limit-the-amount-of-compilation-jobs"
+                                                             href="Nuitka%20User%20Manual.html#limit-the-amount-of-compilation-jobs"
                                                              title="Permalink to this headline"></a>
                   </h4>
                   <p>With the <code class="docutils literal notranslate"><span
@@ -1196,7 +1161,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               <section id="dynamic-sys-path">
                 <h3>Dynamic <code class="docutils literal notranslate"><span class="pre">sys.path</span></code><a
                   class="headerlink"
-                  href="https://nuitka.net/doc/user-manual.html#dynamic-sys-path"
+                  href="Nuitka%20User%20Manual.html#dynamic-sys-path"
                   title="Permalink to this headline"></a></h3>
                 <p>If your script modifies <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>
                   to e.g. insert directories with
@@ -1207,7 +1172,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="missing-data-files-in-standalone">
                 <h3>Missing data files in standalone<a class="headerlink"
-                                                       href="https://nuitka.net/doc/user-manual.html#missing-data-files-in-standalone"
+                                                       href="Nuitka%20User%20Manual.html#missing-data-files-in-standalone"
                                                        title="Permalink to this headline"></a></h3>
                 <p>If your program fails to file data, it can cause all kinds of different
                   behaviours, e.g. a package might complain it is not the right version,
@@ -1223,7 +1188,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="missing-dlls-in-standalone">
                 <h3>Missing DLLs in standalone<a class="headerlink"
-                                                 href="https://nuitka.net/doc/user-manual.html#missing-dlls-in-standalone"
+                                                 href="Nuitka%20User%20Manual.html#missing-dlls-in-standalone"
                                                  title="Permalink to this headline"></a></h3>
                 <p>Nuitka has plugins that deal with copying DLLs. For NumPy, SciPy,
                   Tkinter, etc.</p>
@@ -1234,7 +1199,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="dependency-creep-in-standalone">
                 <h3>Dependency creep in standalone<a class="headerlink"
-                                                     href="https://nuitka.net/doc/user-manual.html#dependency-creep-in-standalone"
+                                                     href="Nuitka%20User%20Manual.html#dependency-creep-in-standalone"
                                                      title="Permalink to this headline"></a></h3>
                 <p>Some packages are a single import, but to Nuitka mean that more than a
                   thousand packages (literally) are to be included. The prime example of
@@ -1258,7 +1223,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="onefile-finding-files">
                 <h3>Onefile: Finding files<a class="headerlink"
-                                             href="https://nuitka.net/doc/user-manual.html#onefile-finding-files"
+                                             href="Nuitka%20User%20Manual.html#onefile-finding-files"
                                              title="Permalink to this headline"></a></h3>
                 <p>There is a difference between <code class="docutils literal notranslate"><span
                   class="pre">sys.argv[0]</span></code> and <code
@@ -1310,7 +1275,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="windows-programs-without-console-give-no-errors">
                 <h3>Windows Programs without console give no errors<a class="headerlink"
-                                                                      href="https://nuitka.net/doc/user-manual.html#windows-programs-without-console-give-no-errors"
+                                                                      href="Nuitka%20User%20Manual.html#windows-programs-without-console-give-no-errors"
                                                                       title="Permalink to this headline"></a>
                 </h3>
                 <p>For debugging purposes, remove <code class="docutils literal notranslate"><span
@@ -1326,11 +1291,11 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
             </section>
             <section id="tips">
-              <h2>Tips<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#tips"
+              <h2>Tips<a class="headerlink" href="Nuitka%20User%20Manual.html#tips"
                          title="Permalink to this headline"></a></h2>
               <section id="nuitka-options-in-the-code">
                 <h3>Nuitka Options in the code<a class="headerlink"
-                                                 href="https://nuitka.net/doc/user-manual.html#nuitka-options-in-the-code"
+                                                 href="Nuitka%20User%20Manual.html#nuitka-options-in-the-code"
                                                  title="Permalink to this headline"></a></h3>
                 <p>There is support for conditional options, and options using pre-defined
                   variables, this is an example:</p>
@@ -1424,7 +1389,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="python-command-line-flags">
                 <h3>Python command line flags<a class="headerlink"
-                                                href="https://nuitka.net/doc/user-manual.html#python-command-line-flags"
+                                                href="Nuitka%20User%20Manual.html#python-command-line-flags"
                                                 title="Permalink to this headline"></a></h3>
                 <p>For passing things like <code class="docutils literal notranslate"><span class="pre">-O</span></code>
                   or <code class="docutils literal notranslate"><span class="pre">-S</span></code> to
@@ -1437,7 +1402,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="caching-compilation-results">
                 <h3>Caching compilation results<a class="headerlink"
-                                                  href="https://nuitka.net/doc/user-manual.html#caching-compilation-results"
+                                                  href="Nuitka%20User%20Manual.html#caching-compilation-results"
                                                   title="Permalink to this headline"></a></h3>
                 <p>The C compiler, when invoked with the same input files, will take a long
                   time and much CPU to compile over and over. Make sure you are having
@@ -1466,7 +1431,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="control-where-caches-live">
                 <h3>Control where Caches live<a class="headerlink"
-                                                href="https://nuitka.net/doc/user-manual.html#control-where-caches-live"
+                                                href="Nuitka%20User%20Manual.html#control-where-caches-live"
                                                 title="Permalink to this headline"></a></h3>
                 <p>The storage for cache results of all kinds, downloads, cached
                   compilation results from C and Nuitka, is done in a platform dependent
@@ -1479,7 +1444,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                   directory is not persisted, but other paths are.</p>
               </section>
               <section id="runners">
-                <h3>Runners<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#runners"
+                <h3>Runners<a class="headerlink" href="Nuitka%20User%20Manual.html#runners"
                               title="Permalink to this headline"></a></h3>
                 <p>Avoid running the <code class="docutils literal notranslate"><span
                   class="pre">nuitka</span></code> binary, doing <code
@@ -1497,7 +1462,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="fastest-c-compilers">
                 <h3>Fastest C Compilers<a class="headerlink"
-                                          href="https://nuitka.net/doc/user-manual.html#fastest-c-compilers"
+                                          href="Nuitka%20User%20Manual.html#fastest-c-compilers"
                                           title="Permalink to this headline"></a></h3>
                 <p>The fastest binaries of <code class="docutils literal notranslate"><span
                   class="pre">pystone.exe</span></code>
@@ -1519,7 +1484,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="unexpected-slowdowns">
                 <h3>Unexpected Slowdowns<a class="headerlink"
-                                           href="https://nuitka.net/doc/user-manual.html#unexpected-slowdowns"
+                                           href="Nuitka%20User%20Manual.html#unexpected-slowdowns"
                                            title="Permalink to this headline"></a></h3>
                 <p>Using the Python DLL, like standard CPython does can lead to unexpected
                   slowdowns, e.g. in uncompiled code that works with Unicode strings. This
@@ -1542,7 +1507,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="standalone-executables-and-dependencies">
                 <h3>Standalone executables and dependencies<a class="headerlink"
-                                                              href="https://nuitka.net/doc/user-manual.html#standalone-executables-and-dependencies"
+                                                              href="Nuitka%20User%20Manual.html#standalone-executables-and-dependencies"
                                                               title="Permalink to this headline"></a>
                 </h3>
                 <p>The process of making standalone executables for Windows traditionally
@@ -1556,7 +1521,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="windows-errors-with-resources">
                 <h3>Windows errors with resources<a class="headerlink"
-                                                    href="https://nuitka.net/doc/user-manual.html#windows-errors-with-resources"
+                                                    href="Nuitka%20User%20Manual.html#windows-errors-with-resources"
                                                     title="Permalink to this headline"></a></h3>
                 <p>On Windows, the Windows Defender tool and the Windows Indexing Service
                   both scan the freshly created binaries, while Nuitka wants to work with
@@ -1566,7 +1531,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="windows-standalone-program-redistribuation">
                 <h3>Windows standalone program redistribuation<a class="headerlink"
-                                                                 href="https://nuitka.net/doc/user-manual.html#windows-standalone-program-redistribuation"
+                                                                 href="Nuitka%20User%20Manual.html#windows-standalone-program-redistribuation"
                                                                  title="Permalink to this headline"></a>
                 </h3>
                 <p>Whether compiling with MingW or MSVC, the standalone programs have
@@ -1656,7 +1621,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
               </section>
               <section id="detecting-nuitka-at-run-time">
                 <h3>Detecting Nuitka at run time<a class="headerlink"
-                                                   href="https://nuitka.net/doc/user-manual.html#detecting-nuitka-at-run-time"
+                                                   href="Nuitka%20User%20Manual.html#detecting-nuitka-at-run-time"
                                                    title="Permalink to this headline"></a></h3>
                 <p>It doesn’t set <code class="docutils literal notranslate"><span class="pre">sys.frozen</span></code>
                   unlike other tools. For Nuitka, we have
@@ -1667,7 +1632,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
             </section>
             <section id="performance">
               <h2>Performance<a class="headerlink"
-                                href="https://nuitka.net/doc/user-manual.html#performance"
+                                href="Nuitka%20User%20Manual.html#performance"
                                 title="Permalink to this headline"></a></h2>
               <p>This chapter gives an overview, of what to currently expect in terms of
                 performance from Nuitka. It’s a work in progress and is updated as we
@@ -1675,7 +1640,7 @@ python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>yo
                 3.x is going to follow later.</p>
               <section id="pystone-results">
                 <h3>pystone results<a class="headerlink"
-                                      href="https://nuitka.net/doc/user-manual.html#pystone-results"
+                                      href="Nuitka%20User%20Manual.html#pystone-results"
                                       title="Permalink to this headline"></a></h3>
                 <p>The results are the top value from this kind of output, running pystone
                   1000 times and taking the minimal value. The idea is that the fastest
@@ -1764,14 +1729,14 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
             </section>
             <section id="where-to-go-next">
               <h2>Where to go next<a class="headerlink"
-                                     href="https://nuitka.net/doc/user-manual.html#where-to-go-next"
+                                     href="Nuitka%20User%20Manual.html#where-to-go-next"
                                      title="Permalink to this headline"></a></h2>
               <p>Remember, this project is not completed yet. Although the CPython test
                 suite works near perfect, there is still more work needed, esp. to make
                 it do more optimization. Try it out.</p>
               <section id="follow-me-on-twitter">
                 <h3>Follow me on Twitter<a class="headerlink"
-                                           href="https://nuitka.net/doc/user-manual.html#follow-me-on-twitter"
+                                           href="Nuitka%20User%20Manual.html#follow-me-on-twitter"
                                            title="Permalink to this headline"></a></h3>
                 <p>Nuitka announcements and interesting stuff is pointed to on the Twitter
                   account, but obviously with not too many details. <a class="reference external"
@@ -1781,7 +1746,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="report-issues-or-bugs">
                 <h3>Report issues or bugs<a class="headerlink"
-                                            href="https://nuitka.net/doc/user-manual.html#report-issues-or-bugs"
+                                            href="Nuitka%20User%20Manual.html#report-issues-or-bugs"
                                             title="Permalink to this headline"></a></h3>
                 <p>Should you encounter any issues, bugs, or ideas, please visit the
                   <a class="reference external" href="https://github.com/kayhayen/Nuitka/issues"
@@ -1834,7 +1799,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="word-of-warning">
                 <h3>Word of Warning<a class="headerlink"
-                                      href="https://nuitka.net/doc/user-manual.html#word-of-warning"
+                                      href="Nuitka%20User%20Manual.html#word-of-warning"
                                       title="Permalink to this headline"></a></h3>
                 <p>Consider using this software with caution. Even though many tests are
                   applied before releases, things are potentially breaking. Your feedback
@@ -1843,7 +1808,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
             </section>
             <section id="join-nuitka">
               <h2>Join Nuitka<a class="headerlink"
-                                href="https://nuitka.net/doc/user-manual.html#join-nuitka"
+                                href="Nuitka%20User%20Manual.html#join-nuitka"
                                 title="Permalink to this headline"></a></h2>
               <p>You are more than welcome to join Nuitka development and help to
                 complete the project in all minor and major ways.</p>
@@ -1889,7 +1854,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </div>
             </section>
             <section id="donations">
-              <h2>Donations<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#donations"
+              <h2>Donations<a class="headerlink" href="Nuitka%20User%20Manual.html#donations"
                               title="Permalink to this headline"></a></h2>
               <p>Should you feel that you cannot help Nuitka directly, but still want to
                 support, please consider <a class="reference external"
@@ -1898,12 +1863,12 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
             </section>
             <section id="unsupported-functionality">
               <h2>Unsupported functionality<a class="headerlink"
-                                              href="https://nuitka.net/doc/user-manual.html#unsupported-functionality"
+                                              href="Nuitka%20User%20Manual.html#unsupported-functionality"
                                               title="Permalink to this headline"></a></h2>
               <section id="the-co-code-attribute-of-code-objects">
                 <h3>The <code class="docutils literal notranslate"><span
                   class="pre">co_code</span></code> attribute of code objects<a class="headerlink"
-                                                                                href="https://nuitka.net/doc/user-manual.html#the-co-code-attribute-of-code-objects"
+                                                                                href="Nuitka%20User%20Manual.html#the-co-code-attribute-of-code-objects"
                                                                                 title="Permalink to this headline"></a>
                 </h3>
                 <p>The code objects are empty for native compiled functions. There is no
@@ -1911,18 +1876,18 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
                   provide it.</p>
               </section>
               <section id="pdb">
-                <h3>PDB<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#pdb"
+                <h3>PDB<a class="headerlink" href="Nuitka%20User%20Manual.html#pdb"
                           title="Permalink to this headline"></a></h3>
                 <p>There is no tracing of compiled functions to attach a debugger to.</p>
               </section>
             </section>
             <section id="optimization">
               <h2>Optimization<a class="headerlink"
-                                 href="https://nuitka.net/doc/user-manual.html#optimization"
+                                 href="Nuitka%20User%20Manual.html#optimization"
                                  title="Permalink to this headline"></a></h2>
               <section id="constant-folding">
                 <h3>Constant Folding<a class="headerlink"
-                                       href="https://nuitka.net/doc/user-manual.html#constant-folding"
+                                       href="Nuitka%20User%20Manual.html#constant-folding"
                                        title="Permalink to this headline"></a></h3>
                 <p>The most important form of optimization is the constant folding. This is
                   when an operation can be fully predicted at compile time. Currently,
@@ -1968,7 +1933,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="constant-propagation">
                 <h3>Constant Propagation<a class="headerlink"
-                                           href="https://nuitka.net/doc/user-manual.html#constant-propagation"
+                                           href="Nuitka%20User%20Manual.html#constant-propagation"
                                            title="Permalink to this headline"></a></h3>
                 <p>At the core of optimizations, there is an attempt to determine the
                   values of variables at run time and predictions of assignments. It
@@ -2014,7 +1979,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="built-in-name-lookups">
                 <h3>Built-in Name Lookups<a class="headerlink"
-                                            href="https://nuitka.net/doc/user-manual.html#built-in-name-lookups"
+                                            href="Nuitka%20User%20Manual.html#built-in-name-lookups"
                                             title="Permalink to this headline"></a></h3>
                 <p>Also, built-in exception name references are optimized if they are used
                   as a module level read-only variables:</p>
@@ -2047,7 +2012,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="built-in-call-prediction">
                 <h3>Built-in Call Prediction<a class="headerlink"
-                                               href="https://nuitka.net/doc/user-manual.html#built-in-call-prediction"
+                                               href="Nuitka%20User%20Manual.html#built-in-call-prediction"
                                                title="Permalink to this headline"></a></h3>
                 <p>For built-in calls like <code class="docutils literal notranslate"><span
                   class="pre">type</span></code>,
@@ -2124,7 +2089,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="conditional-statement-prediction">
                 <h3>Conditional Statement Prediction<a class="headerlink"
-                                                       href="https://nuitka.net/doc/user-manual.html#conditional-statement-prediction"
+                                                       href="Nuitka%20User%20Manual.html#conditional-statement-prediction"
                                                        title="Permalink to this headline"></a></h3>
                 <p>For conditional statements, some branches may not ever be taken, because
                   of the conditions being possible to predict. In these cases, the branch
@@ -2188,7 +2153,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="exception-propagation">
                 <h3>Exception Propagation<a class="headerlink"
-                                            href="https://nuitka.net/doc/user-manual.html#exception-propagation"
+                                            href="Nuitka%20User%20Manual.html#exception-propagation"
                                             title="Permalink to this headline"></a></h3>
                 <p>For exceptions that are determined at compile time, there is an
                   expression that will simply do raise the exception. These can be
@@ -2249,7 +2214,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="exception-scope-reduction">
                 <h3>Exception Scope Reduction<a class="headerlink"
-                                                href="https://nuitka.net/doc/user-manual.html#exception-scope-reduction"
+                                                href="Nuitka%20User%20Manual.html#exception-scope-reduction"
                                                 title="Permalink to this headline"></a></h3>
                 <p>Consider the following code:</p>
                 <div class="highlight-python notranslate">
@@ -2325,7 +2290,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="exception-block-inlining">
                 <h3>Exception Block Inlining<a class="headerlink"
-                                               href="https://nuitka.net/doc/user-manual.html#exception-block-inlining"
+                                               href="Nuitka%20User%20Manual.html#exception-block-inlining"
                                                title="Permalink to this headline"></a></h3>
                 <p>With the exception propagation, it then becomes possible to transform
                   this code:</p>
@@ -2409,7 +2374,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="empty-branch-removal">
                 <h3>Empty Branch Removal<a class="headerlink"
-                                           href="https://nuitka.net/doc/user-manual.html#empty-branch-removal"
+                                           href="Nuitka%20User%20Manual.html#empty-branch-removal"
                                            title="Permalink to this headline"></a></h3>
                 <p>For loops and conditional statements that contain only code without
                   effect, it should be possible to remove the whole construct:</p>
@@ -2479,7 +2444,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="unpacking-prediction">
                 <h3>Unpacking Prediction<a class="headerlink"
-                                           href="https://nuitka.net/doc/user-manual.html#unpacking-prediction"
+                                           href="Nuitka%20User%20Manual.html#unpacking-prediction"
                                            title="Permalink to this headline"></a></h3>
                 <p>When the length of the right-hand side of an assignment to a sequence
                   can be predicted, the unpacking can be replaced with multiple
@@ -2539,7 +2504,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="built-in-type-inference">
                 <h3>Built-in Type Inference<a class="headerlink"
-                                              href="https://nuitka.net/doc/user-manual.html#built-in-type-inference"
+                                              href="Nuitka%20User%20Manual.html#built-in-type-inference"
                                               title="Permalink to this headline"></a></h3>
                 <p>When a construct like <code class="docutils literal notranslate"><span
                   class="pre">in</span> <span class="pre">xrange()</span></code> or <code
@@ -2583,7 +2548,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="quicker-function-calls">
                 <h3>Quicker Function Calls<a class="headerlink"
-                                             href="https://nuitka.net/doc/user-manual.html#quicker-function-calls"
+                                             href="Nuitka%20User%20Manual.html#quicker-function-calls"
                                              title="Permalink to this headline"></a></h3>
                 <p>Functions are structured so that their parameter parsing and <code
                   class="docutils literal notranslate"><span class="pre">tp_call</span></code>
@@ -2642,7 +2607,7 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
               </section>
               <section id="lowering-of-iterated-container-types">
                 <h3>Lowering of iterated Container Types<a class="headerlink"
-                                                           href="https://nuitka.net/doc/user-manual.html#lowering-of-iterated-container-types"
+                                                           href="Nuitka%20User%20Manual.html#lowering-of-iterated-container-types"
                                                            title="Permalink to this headline"></a></h3>
                 <p>In some cases, accesses to <code class="docutils literal notranslate"><span
                   class="pre">list</span></code> constants can become <code
@@ -2715,12 +2680,12 @@ python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>
             </section>
             <section id="updates-for-this-manual">
               <h2>Updates for this Manual<a class="headerlink"
-                                            href="https://nuitka.net/doc/user-manual.html#updates-for-this-manual"
+                                            href="Nuitka%20User%20Manual.html#updates-for-this-manual"
                                             title="Permalink to this headline"></a></h2>
               <p>This document is written in REST. That is an ASCII format which is
                 readable to human, but easily used to generate PDF or HTML documents.</p>
               <p>You will find the current version at:
-                <a class="reference external" href="https://nuitka.net/doc/user-manual.html">https://nuitka.net/doc/user-manual.html</a>
+                <a class="reference external" href="Nuitka%20User%20Manual.html">Nuitka%20User%20Manual.html</a>
               </p>
               <p>And the current PDF under: <a class="reference external"
                                                href="https://nuitka.net/doc/README.pdf">https://nuitka.net/doc/README.pdf</a>
