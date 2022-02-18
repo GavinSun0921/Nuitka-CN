@@ -1,4 +1,4 @@
 git checkout pages
 git merge main
 git push
-git checkout master
+git checkout main
