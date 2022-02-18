@@ -1,0 +1,2750 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://nuitka.net/doc/user-manual.html -->
+<html class="writer-html5" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/">
+  <meta content="User Manual of Nuitka with the details on how to use it" name="description">
+  <meta content="python,compiler,nuitka,manual" name="keywords">
+  <link rel="icon" href="https://nuitka.net/_static/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://nuitka.net/_static/favicon.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://nuitka.net/_static/favicon.ico" sizes="32x32" type="image/x-icon">
+  <link rel="icon" href="https://nuitka.net/_static/apple-touch-icon-iphone.png" sizes="57x57" type="image/png">
+  <link rel="icon" href="https://nuitka.net/_static/apple-touch-icon-ipad.png" sizes="72x72" type="image/png">
+  <link rel="icon" href="https://nuitka.net/_static/apple-touch-icon-iphone4.png" sizes="114x114" type="image/png">
+  <link rel="icon" href="https://nuitka.net/_static/apple-touch-icon-ipad3.png" sizes="144x144" type="image/png">
+  <link rel="apple-touch-icon" href="https://nuitka.net/_static/apple-touch-icon-180x180.png" sizes="180x180"
+        type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuitka 用户手册</title>
+  <link rel="stylesheet" href="./Nuitka User Manual_files/combined_.css"
+        type="text/css">
+  <link rel="canonical" href="https://nuitka.net/doc/user-manual.html">
+  <!--[if lt IE 9]>
+  <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script>var DOCUMENTATION_OPTIONS = {
+    URL_ROOT: '../',
+    VERSION: '',
+    LANGUAGE: 'None',
+    COLLAPSE_INDEX: false,
+    BUILDER: 'html',
+    FILE_SUFFIX: '.html',
+    LINK_SUFFIX: '.html',
+    HAS_SOURCE: false,
+    SOURCELINK_SUFFIX: '.txt',
+    NAVIGATION_WITH_KEYS: false
+  };</script>
+  <script src="./Nuitka User Manual_files/combined_820841e74593a1d9384b6f5b50b4e5c7.js.下载" async=""></script>
+  <script src="./Nuitka User Manual_files/clipboard.min.js.下载" async=""></script>
+  <script src="./Nuitka User Manual_files/copybutton.js.下载" async=""></script>
+  <link rel="index" title="Index" href="https://nuitka.net/genindex.html">
+  <link rel="next" title="Support" href="https://nuitka.net/pages/support.html">
+  <link rel="prev" title="Nuitka Downloads" href="https://nuitka.net/doc/download.html">
+  <link rel="alternate" type="application/atom+xml" href="https://nuitka.net/blog/atom.xml" title="Nuitka Blog">
+  <style type="text/css">
+      ul.ablog-archive {
+          list-style: none;
+          overflow: auto;
+          margin-left: 0px;
+      }
+
+      ul.ablog-archive li {
+          float: left;
+          margin-right: 5px;
+          font-size: 80%;
+      }
+
+      ul.postlist a {
+          font-style: italic;
+      }
+
+      ul.postlist-style-disc {
+          list-style-type: disc;
+      }
+
+      ul.postlist-style-none {
+          list-style-type: none;
+      }
+
+      ul.postlist-style-circle {
+          list-style-type: circle;
+      }
+  </style>
+  <script charset="utf-8" src="chrome-extension://pngicgippofneelinabebobnkpmdiphn/js/btype.js"></script>
+  <script type="text/javascript" charset="utf-8"
+          src="chrome-extension://pngicgippofneelinabebobnkpmdiphn/js/chrome.js"></script>
+</head>
+<body class="wy-body-for-nav">
+<div class="wy-grid-for-nav">
+
+  <div class="wy-nav-content">
+    <div class="rst-content">
+
+      <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <div itemprop="articleBody">
+          <section id="nuitka-user-manual">
+            <h1>Nuitka 用户手册<a class="headerlink"
+                              href="https://nuitka.net/doc/user-manual.html#nuitka-user-manual"
+                              title="Permalink to this headline"></a></h1>
+            <section id="overview">
+              <h2>概览（Overview）<a class="headerlink"
+                                 href="https://nuitka.net/doc/user-manual.html#overview"
+                                 title="Permalink to this headline"></a></h2>
+              <p>如果你对使用 Nuitka 感兴趣、希望了解它的使用用例、查看你期望的内容、Nuitka 的许可协议、依赖需求等，建议你首先阅读本文档。</p>
+              <p>Nuitka 是一个 Python 编译器。它使用 Python 编写，可以无缝替换和扩展 Python 解释器。当它与 Python 一起运行时，能够编译与 Python 版本对应的 CPython
+                2.6、2.7、3.3、3.4、3.5、3.6、3.7 或 3.8 的每一个组成部分。</p>
+              <p>然后它以极其兼容的方式执行未编译的代码和已编译的代码。</p>
+              <p>你可以自由地使用所有 Python 库模块和所有扩展模块。</p>
+              <p>Nuitka 将 Python 模块转化为 C 程序，然后使用 <code class="docutils literal notranslate"><span
+                class="pre">libpython</span></code> 和它自己的静态 C 文件以与 CPython 相同的方式运行。</p>
+              <p>所有的优化都是为了避免不必要的开销。没有一个是为了消除兼容性，虽然偶尔会做一些轻微的改进，但是并非每一个标准的 Python Bug
+                都会被还原出来，例如更完整的异常错误信息，不过有一个完全兼容模式可以禁用它。</p>
+            </section>
+            <section id="usage">
+              <h2>使用（Usage）<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#usage"
+                              title="Permalink to this headline"></a></h2>
+              <section id="requirements">
+                <h3>要求（Requirements）<a class="headerlink"
+                                       href="https://nuitka.net/doc/user-manual.html#requirements"
+                                       title="Permalink to this headline"></a></h3>
+                <ul>
+                  <li><p>C 编译器：你需要一个支持 C11 或 C++03 的编译器 <a class="footnote-reference brackets"
+                                                           href="https://nuitka.net/doc/user-manual.html#id3"
+                                                           id="id1">1</a>
+                  </p>
+                    <p>目前来看，这需要你使用以下编译器中的一个：</p>
+                    <ul class="simple">
+                      <li><p>在 Windows 上 MinGW64 C11 编译器必须要基于 gcc 11.2 或更高版本。如果没有找到可用的 C 编译器它将会被 <em>自动</em>
+                        下载，这是被推荐的一种安装方式，因为 Nuitka 也会为升级它。</p></li>
+                      <li><p>在 Windows 上 Visual Studio 2022 或更新版本 <a class="footnote-reference brackets"
+                                                                     href="https://nuitka.net/doc/user-manual.html#id4"
+                                                                     id="id2">2</a>，旧版本也可以使用但仅支持商业用户。配置为使用英语语言包以获得最佳效果（Nuitka过滤垃圾输出，但只针对英语语言）。如果安装了，它将被默认使用。
+                      </p></li>
+                      <li><p>在所有其他平台上，<code class="docutils literal notranslate"><span class="pre">gcc</span></code>
+                        编译器的版本至少为 5.1 ，而 <code class="docutils literal notranslate"><span class="pre">g++</span></code>
+                        编译器的版本至少为 4.4 。</p></li>
+                      <li><p>macOS X 和大多数 FreeBSD 架构上的 <code class="docutils literal notranslate"><span class="pre">clang</span></code>
+                        编译器
+                      </p></li>
+                      <li><p>在Windows上，如果 Visual Studio 安装程序提供 <code class="docutils literal notranslate"><span
+                        class="pre">clang-cl</span></code> 编译器，那么 Windows可以使用它。</p></li>
+                    </ul>
+                  </li>
+                  <li><p>Python: 版本 2.6, 2.7 或 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10</p>
+                    <div
+                      class="admonition-for-python-3-3-3-4-and-only-those-we-need-other-python-version-as-a-compile-time-dependency admonition">
+                      <p class="admonition-title"><em>仅</em> 对于 Python 3.3/3.4 版本，我们需要其他 Python 版本作为编译时的依赖项</p>
+                      <p>Nuitka 本身完全兼容所有列出的版本，但是作为内部使用的工具 Scons 并不完全兼容。</p>
+                      <p>对于这些版本，您还 <em>需要</em> 安装 Python2 或 python3.5 或更高版本，但仅在编译期间。这是用于协调 C 编译的 Scons，它不支持与 Nuitka 相同的
+                        Python 版本。</p>
+                      <p>此外，在 Windows 上，不能使用 Python2 因为 <code class="docutils literal notranslate"><span class="pre">clcache</span></code>
+                        不能使用它，需要安装 Python 3.5 或更高版本。</p>
+                      <p>Nuitka 会发现这些需要的Python版本(在Windows上通过注册表)，只要它们已经安装，你就不会注意到它。</p>
+                    </div>
+                    <div class="admonition-moving-binaries-to-other-machines admonition">
+                      <p class="admonition-title">二进制文件移动到其他机器</p>
+                      <p>通过使用 <code class="docutils literal notranslate"><span class="pre">--standalone</span></code> 和
+                        <code class="docutils literal notranslate"><span class="pre">--onefile</span></code>
+                        选项，可以使创建的二进制文件独立于Python安装而可执行。</p>
+                    </div>
+                    <div class="admonition-binary-filename-suffix admonition">
+                      <p class="admonition-title">二进制文件后缀</p>
+                      <p>在 Windows上创建的二进制文件后缀名为 <code class="docutils literal notranslate"><span class="pre">.exe</span></code>
+                        。对于 standalone 模式在其他平台上没有后缀名，或以 <code class="docutils literal notranslate"><span class="pre">.bin</span></code>为后缀名，您可以自由删除或修改，或使用<code
+                          class="docutils literal notranslate"><span class="pre">-o</span></code> 选项指定。</p>
+                      <p>添加加速模式的后缀只是为了确保原始脚本名称和二进制名称永远不会发生冲突，所以我们可以安全地进行覆盖而不破坏原始源文件。
+                        （The suffix for acceleration mode is added just to be sure that the
+                        original script name and the binary name do not ever collide, so
+                        we can safely do an overwrite without destroying the original
+                        source file.）</p>
+                    </div>
+                    <div class="admonition-it-has-to-be-cpython-anaconda-python admonition">
+                      <p class="admonition-title"><strong>必须</strong>使用 CPython, Anaconda
+                        Python.</p>
+                      <p>您需要标准的 Python 实现（称为“CPython”）来执行 Nuitka，因为它与它的实现细节密切相关。</p>
+                    </div>
+                    <div class="admonition-it-cannot-be-from-windows-app-store admonition">
+                      <p class="admonition-title">它不可能来自 Windows 应用商店</p>
+                      <p>众所周知，Windows 商店的 Python 肯定不能正常工作，并且在 macOS 上 “pyenv” 可能也不会工作。</p>
+                    </div>
+                  </li>
+                  <li><p>Operating System: Linux, FreeBSD, NetBSD, macOS X, and Windows (32/64
+                    bits).</p>
+                    <p>Others may work as well. The portability is expected to be generally
+                      good, but the e.g. Scons usage may have to be adapted. Make sure to
+                      match Windows Python and C compiler architecture, or else you will
+                      get cryptic error messages.</p>
+                  </li>
+                  <li><p>Architectures: x86, x86_64 (amd64), and arm, likely many more</p>
+                    <p>Other architectures are expected to also work, out of the box, as
+                      Nuitka is generally not using any hardware specifics. These are just
+                      the ones tested and known to be good. Feedback is welcome. Generally,
+                      the architectures that Debian supports can be considered good and
+                      tested too.</p>
+                  </li>
+                </ul>
+                <dl class="footnote brackets">
+                  <dt class="label" id="id3"><span class="brackets"><a class="fn-backref"
+                                                                       href="https://nuitka.net/doc/user-manual.html#id1">1</a></span>
+                  </dt>
+                  <dd><p>Support for this C11 is a given with gcc 5.x or higher or any clang
+                    version.</p>
+                    <p>The MSVC compiler doesn’t do it yet. But as a workaround, as the C++03
+                      language standard is very overlapping with C11, it is then used instead
+                      where the C compiler is too old. Nuitka used to require a C++ compiler
+                      in the past, but it changed.</p>
+                  </dd>
+                  <dt class="label" id="id4"><span class="brackets"><a class="fn-backref"
+                                                                       href="https://nuitka.net/doc/user-manual.html#id2">2</a></span>
+                  </dt>
+                  <dd><p>Download for free from
+                    <a class="reference external"
+                       href="https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx"
+                       target="_blank">https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx</a>
+                    (the community editions work just fine).</p>
+                    <p>The latest version is recommended but not required. On the other hand,
+                      there is no need to except pre-Windows 10 support, and they might work
+                      for you, but support of these configurations is only available to
+                      commercial users.</p>
+                  </dd>
+                </dl>
+              </section>
+              <section id="command-line">
+                <h3>Command Line<a class="headerlink"
+                                   href="https://nuitka.net/doc/user-manual.html#command-line"
+                                   title="Permalink to this headline"></a></h3>
+                <p>The recommended way of executing Nuitka is <code
+                  class="docutils literal notranslate"><span
+                  class="pre">&lt;the_right_python&gt;</span> <span class="pre">-m</span>
+                  <span class="pre">nuitka</span></code> to be absolutely certain which Python
+                  interpreter you are
+                  using, so it is easier to match with what Nuitka has.</p>
+                <p>The next best way of executing Nuitka bare that is from a source
+                  checkout or archive, with no environment variable changes, most
+                  noteworthy, you do not have to mess with <code class="docutils literal notranslate"><span
+                    class="pre">PYTHONPATH</span></code> at all for
+                  Nuitka. You just execute the <code class="docutils literal notranslate"><span
+                    class="pre">nuitka</span></code> and <code
+                    class="docutils literal notranslate"><span
+                    class="pre">nuitka-run</span></code> scripts
+                  directly without any changes to the environment. You may want to add the
+                  <code class="docutils literal notranslate"><span class="pre">bin</span></code>
+                  directory to your <code class="docutils literal notranslate"><span
+                    class="pre">PATH</span></code> for your convenience, but that step
+                  is optional.</p>
+                <p>Moreover, if you want to execute with the right interpreter, in that
+                  case, be sure to execute <code class="docutils literal notranslate"><span
+                    class="pre">&lt;the_right_python&gt;</span> <span
+                    class="pre">bin/nuitka</span></code> and be good.</p>
+                <div class="admonition-pick-the-right-interpreter admonition">
+                  <p class="admonition-title">Pick the right Interpreter</p>
+                  <p>If you encounter a <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>
+                    you absolutely most certainly have
+                    picked the wrong interpreter for the program you are compiling.</p>
+                </div>
+                <p>Nuitka has a <code class="docutils literal notranslate"><span
+                  class="pre">--help</span></code> option to output what it can do:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell0"><span></span>nuitka --help
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell0">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The <code class="docutils literal notranslate"><span
+                  class="pre">nuitka-run</span></code> command is the same as <code
+                  class="docutils literal notranslate"><span class="pre">nuitka</span></code>, but
+                  with a
+                  different default. It tries to compile <em>and</em> directly execute a Python
+                  script:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell1"><span></span>nuitka-run --help
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell1">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>This option that is different is <code class="docutils literal notranslate"><span
+                  class="pre">--run</span></code>, and passing on arguments
+                  after the first non-option to the created binary, so it is somewhat more
+                  similar to what plain <code class="docutils literal notranslate"><span
+                    class="pre">python</span></code>
+                  will do.</p>
+              </section>
+              <section id="installation">
+                <h3>Installation<a class="headerlink"
+                                   href="https://nuitka.net/doc/user-manual.html#installation"
+                                   title="Permalink to this headline"></a></h3>
+                <p>For most systems, there will be packages on the <a class="reference external"
+                                                                      href="https://nuitka.net/doc/download.html">download
+                  page</a> of Nuitka. But you can also
+                  install it from source code as described above, but also like any other
+                  Python program it can be installed via the normal <code
+                    class="docutils literal notranslate"><span class="pre">python</span> <span
+                    class="pre">setup.py</span>
+                    <span class="pre">install</span></code> routine.</p>
+              </section>
+              <section id="license">
+                <h3>License<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#license"
+                              title="Permalink to this headline"></a></h3>
+                <p>Nuitka is licensed under the Apache License, Version 2.0; you may not
+                  use it except in compliance with the License.</p>
+                <p>You may obtain a copy of the License at
+                  <a class="reference external" href="https://www.apache.org/licenses/LICENSE-2.0"
+                     target="_blank">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+                <p>Unless required by applicable law or agreed to in writing, software
+                  distributed under the License is distributed on an “AS IS” BASIS,
+                  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                  See the License for the specific language governing permissions and
+                  limitations under the License.</p>
+              </section>
+            </section>
+            <section id="tutorial-setup-and-build-on-windows">
+              <h2>Tutorial Setup and build on Windows<a class="headerlink"
+                                                        href="https://nuitka.net/doc/user-manual.html#tutorial-setup-and-build-on-windows"
+                                                        title="Permalink to this headline"></a></h2>
+              <p>This is basic steps if you have nothing installed, of course if you have
+                any of the parts, just skip it.</p>
+              <section id="setup">
+                <h3>Setup<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#setup"
+                            title="Permalink to this headline"></a></h3>
+                <section id="install-python">
+                  <h4>Install Python<a class="headerlink"
+                                       href="https://nuitka.net/doc/user-manual.html#install-python"
+                                       title="Permalink to this headline"></a></h4>
+                  <ul class="simple">
+                    <li><p>Download and install from <a class="reference external"
+                                                        href="https://www.python.org/downloads/windows"
+                                                        target="_blank">https://www.python.org/downloads/windows</a>
+                    </p></li>
+                    <li><p>Select one of <code class="docutils literal notranslate"><span
+                      class="pre">Windows</span> <span class="pre">x86-64</span> <span
+                      class="pre">web-based</span> <span class="pre">installer</span></code>
+                      (64 bits Python,
+                      recommended) or <code class="docutils literal notranslate"><span
+                        class="pre">x86</span> <span class="pre">executable</span></code>
+                      (32 bits Python) installer.</p></li>
+                    <li><p>Verify using command <code class="docutils literal notranslate"><span
+                      class="pre">python</span> <span class="pre">--version</span></code>.</p>
+                    </li>
+                  </ul>
+                </section>
+                <section id="install-nuitka">
+                  <h4>Install Nuitka<a class="headerlink"
+                                       href="https://nuitka.net/doc/user-manual.html#install-nuitka"
+                                       title="Permalink to this headline"></a></h4>
+                  <ul class="simple">
+                    <li><p><code class="docutils literal notranslate"><span
+                      class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span>
+                      <span class="pre">install</span> <span class="pre">nuitka</span></code></p>
+                    </li>
+                    <li><p>Verify using command <code class="docutils literal notranslate"><span
+                      class="pre">python</span> <span class="pre">-m</span> <span class="pre">nuitka</span>
+                      <span class="pre">--version</span></code></p></li>
+                  </ul>
+                </section>
+              </section>
+              <section id="write-some-code-and-test">
+                <h3>Write some code and test<a class="headerlink"
+                                               href="https://nuitka.net/doc/user-manual.html#write-some-code-and-test"
+                                               title="Permalink to this headline"></a></h3>
+                <section id="create-a-folder-for-the-python-code">
+                  <h4>Create a folder for the Python code<a class="headerlink"
+                                                            href="https://nuitka.net/doc/user-manual.html#create-a-folder-for-the-python-code"
+                                                            title="Permalink to this headline"></a>
+                  </h4>
+                  <ul class="simple">
+                    <li><p>mkdir HelloWorld</p></li>
+                    <li><p>make a python file named <strong>hello.py</strong></p></li>
+                  </ul>
+                  <div class="highlight-python notranslate">
+                    <div class="highlight"><pre id="codecell2"><span></span><span
+                      class="k">def</span> <span class="nf">talk</span><span
+                      class="p">(</span><span class="n">message</span><span
+                      class="p">):</span>
+    <span class="k">return</span> <span class="s2">"Talk "</span> <span class="o">+</span> <span
+                        class="n">message</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">talk</span><span class="p">(</span><span
+                        class="s2">"Hello World"</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span
+                        class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre>
+                      <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                              data-clipboard-target="#codecell2">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                             viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                          <title>Copy to clipboard</title>
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                          <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+                <section id="test-your-program">
+                  <h4>Test your program<a class="headerlink"
+                                          href="https://nuitka.net/doc/user-manual.html#test-your-program"
+                                          title="Permalink to this headline"></a></h4>
+                  <p>Do as you normally would. Running Nuitka on code that works incorrectly
+                    is not easier to debug.</p>
+                  <div class="highlight-bash notranslate">
+                    <div class="highlight"><pre id="codecell3"><span></span>python hello.py
+</pre>
+                      <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                              data-clipboard-target="#codecell3">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                             viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                          <title>Copy to clipboard</title>
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                          <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+                <hr class="docutils">
+                <section id="build-it-using">
+                  <h4>Build it using<a class="headerlink"
+                                       href="https://nuitka.net/doc/user-manual.html#build-it-using"
+                                       title="Permalink to this headline"></a></h4>
+                  <div class="highlight-bash notranslate">
+                    <div class="highlight"><pre id="codecell4"><span></span>python -m nuitka hello.py
+</pre>
+                      <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                              data-clipboard-target="#codecell4">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                             viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                          <title>Copy to clipboard</title>
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                          <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="admonition note">
+                    <p class="admonition-title">Note</p>
+                    <p>This will prompt you to download a C caching tool (to speed up
+                      repeated compilation of generated C code) and a MinGW64 based C
+                      compiler unless you have a suitable MSVC installed. Say <code
+                        class="docutils literal notranslate"><span
+                        class="pre">yes</span></code> to
+                      both those questions.</p>
+                  </div>
+                </section>
+                <section id="run-it">
+                  <h4>Run it<a class="headerlink"
+                               href="https://nuitka.net/doc/user-manual.html#run-it"
+                               title="Permalink to this headline"></a></h4>
+                  <p>Execute the <code class="docutils literal notranslate"><span class="pre">hello.exe</span></code>
+                    created near <code class="docutils literal notranslate"><span class="pre">hello.py</span></code>.
+                  </p>
+                </section>
+                <section id="distribute">
+                  <h4>Distribute<a class="headerlink"
+                                   href="https://nuitka.net/doc/user-manual.html#distribute"
+                                   title="Permalink to this headline"></a></h4>
+                  <p>To distribute, build with <code class="docutils literal notranslate"><span
+                    class="pre">--standalone</span></code> option, which will not output
+                    a single executable, but a whole folder. Copy the resulting
+                    <code class="docutils literal notranslate"><span
+                      class="pre">hello.dist</span></code> folder to the other machine and run
+                    it.</p>
+                  <p>You may also try <code class="docutils literal notranslate"><span
+                    class="pre">--onefile</span></code>
+                    which does create a single file, but make
+                    sure that the mere standalone is working, before turning to it, as it
+                    will make the debugging only harder, e.g. in case of missing data files.</p>
+                </section>
+              </section>
+            </section>
+            <section id="use-cases">
+              <h2>Use Cases<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#use-cases"
+                              title="Permalink to this headline"></a></h2>
+              <section id="use-case-1-program-compilation-with-all-modules-embedded">
+                <h3>Use Case 1 - Program compilation with all modules embedded<a class="headerlink"
+                                                                                 href="https://nuitka.net/doc/user-manual.html#use-case-1-program-compilation-with-all-modules-embedded"
+                                                                                 title="Permalink to this headline"></a>
+                </h3>
+                <p>If you want to compile a whole program recursively, and not only the
+                  single file that is the main program, do it like this:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell5"><span></span>python -m nuitka --follow-imports program.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell5">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>There are more fine grained controls than <code
+                    class="docutils literal notranslate"><span
+                    class="pre">--follow-imports</span></code>
+                    available. Consider the output of <code
+                      class="docutils literal notranslate"><span class="pre">nuitka</span>
+                      <span class="pre">--help</span></code>. Including less
+                    modules into the compilation, but instead using normal Python for it
+                    will make it faster to compile.</p>
+                </div>
+                <p>In case you have a source directory with dynamically loaded files, i.e.
+                  one which cannot be found by recursing after normal import statements
+                  via the <code class="docutils literal notranslate"><span
+                    class="pre">PYTHONPATH</span></code> (which would be the recommended way),
+                  you can
+                  always require that a given directory shall also be included in the
+                  executable:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell6"><span></span>python -m nuitka --follow-imports --include-plugin-directory<span
+                    class="o">=</span>plugin_dir program.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell6">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>If you don’t do any dynamic imports, simply setting your
+                    <code class="docutils literal notranslate"><span
+                      class="pre">PYTHONPATH</span></code> at compilation time is what you
+                    should do.</p>
+                  <p>Use <code class="docutils literal notranslate"><span class="pre">--include-plugin-directory</span></code>
+                    only if you make <code class="docutils literal notranslate"><span
+                      class="pre">__import__()</span></code>
+                    calls that Nuitka cannot predict, because they e.g. depend on command
+                    line parameters. Nuitka also warns about these, and point to the
+                    option.</p>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>The resulting filename will be <code class="docutils literal notranslate"><span
+                    class="pre">program.exe</span></code> on Windows,
+                    <code class="docutils literal notranslate"><span class="pre">program.bin</span></code>
+                    on other platforms.</p>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>The resulting binary still depend on CPython and used C extension
+                    modules being installed.</p>
+                  <p>If you want to be able to copy it to another machine, use
+                    <code class="docutils literal notranslate"><span class="pre">--standalone</span></code>
+                    and copy the created <code class="docutils literal notranslate"><span
+                      class="pre">program.dist</span></code> directory and
+                    execute the <code class="docutils literal notranslate"><span class="pre">program.exe</span></code>
+                    (Windows) or <code class="docutils literal notranslate"><span class="pre">program</span></code>
+                    (other
+                    platforms) put inside.</p>
+                </div>
+              </section>
+              <section id="use-case-2-extension-module-compilation">
+                <h3>Use Case 2 - Extension Module compilation<a class="headerlink"
+                                                                href="https://nuitka.net/doc/user-manual.html#use-case-2-extension-module-compilation"
+                                                                title="Permalink to this headline"></a>
+                </h3>
+                <p>If you want to compile a single extension module, all you have to do is
+                  this:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell7"><span></span>python -m nuitka --module some_module.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell7">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The resulting file <code class="docutils literal notranslate"><span class="pre">some_module.so</span></code>
+                  can then be used instead of
+                  <code class="docutils literal notranslate"><span
+                    class="pre">some_module.py</span></code>.</p>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>It’s left as an exercise to the reader, to find out what happens if
+                    both are present.</p>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>The option <code class="docutils literal notranslate"><span
+                    class="pre">--follow-imports</span></code>
+                    and other variants work as well, but
+                    the included modules will only become importable <em>after</em> you imported
+                    the <code class="docutils literal notranslate"><span
+                      class="pre">some_module</span></code> name.</p>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>The resulting extension module can only be loaded into a CPython of
+                    the same version and doesn’t include other extension modules.</p>
+                </div>
+              </section>
+              <section id="use-case-3-package-compilation">
+                <h3>Use Case 3 - Package compilation<a class="headerlink"
+                                                       href="https://nuitka.net/doc/user-manual.html#use-case-3-package-compilation"
+                                                       title="Permalink to this headline"></a></h3>
+                <p>If you need to compile a whole package and embed all modules, that is
+                  also feasible, use Nuitka like this:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell8"><span></span>python -m nuitka --module some_package --include-package<span
+                    class="o">=</span>some_package
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell8">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>The inclusion of the package contents needs to be provided manually,
+                    otherwise, the package is empty. You can be more specific if you
+                    want, and only include part of it. Data files located inside the
+                    package will not be embedded by this process, you need to copy them
+                    yourself with this approach.</p>
+                </div>
+              </section>
+              <section id="use-case-4-program-distribution">
+                <h3>Use Case 4 - Program Distribution<a class="headerlink"
+                                                        href="https://nuitka.net/doc/user-manual.html#use-case-4-program-distribution"
+                                                        title="Permalink to this headline"></a></h3>
+                <p>For distribution to other systems, there is the standalone mode which
+                  produces a folder for which you can specify <code
+                    class="docutils literal notranslate"><span
+                    class="pre">--standalone</span></code>.</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell9"><span></span>python -m nuitka --standalone program.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell9">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>Follow all imports is default in this mode. You can selectively exclude
+                  modules by specifically saying <code class="docutils literal notranslate"><span
+                    class="pre">--nofollow-import-to</span></code>, but then an
+                  <code class="docutils literal notranslate"><span
+                    class="pre">ImportError</span></code> will be raised when import of it is
+                  attempted at program
+                  runtime.</p>
+                <p>For data files to be included, use the option
+                  <code class="docutils literal notranslate"><span class="pre">--include-data-file=&lt;source&gt;=&lt;target&gt;</span></code>
+                  where the source is a file
+                  system path, but target has to be specified relative. For standalone you
+                  can also copy them manually, but this can do extra checks, and for
+                  onefile mode, there is no manual copying possible.</p>
+                <p>To copy some or all file in a directory, use the option
+                  <code class="docutils literal notranslate"><span
+                    class="pre">--include-data-file=/etc/*.txt=etc/</span></code>
+                  where you get to specify shell
+                  patterns for the files, and a subdirectory where to put them, indicated
+                  by the trailing slash.</p>
+                <p>To copy a whole folder with all files, you can use
+                  <code class="docutils literal notranslate"><span
+                    class="pre">--include-data-dir=/path/to/images=images</span></code>
+                  which will copy all files
+                  including a potential subdirectory structure. You cannot filter here,
+                  i.e. if you want only a partial copy, remove the files beforehand.</p>
+                <p>For package data, there is a better way, using
+                  <code class="docutils literal notranslate"><span
+                    class="pre">--include-package-data</span></code> which detects data files of
+                  packages
+                  automatically and copies them over. It even accepts patterns in shell
+                  style.</p>
+                <p>With data files, you are largely on your own. Nuitka keeps track of ones
+                  that are needed by popular packages, but it might be incomplete. Raise
+                  issues if you encounter something in these.</p>
+                <p>When that is working, you can use the onefile mode if you so desire.</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell10"><span></span>python -m nuitka --onefile program.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell10">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>This will create a single binary, which on Linux will not even unpack
+                  itself, but instead loop back mount its contents as a filesystem and use
+                  that.</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell11"><span></span><span class="c1"># Create a binary that unpacks into a temporary folder</span>
+python -m nuitka --onefile program.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell11">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>There are more platform specific options, e.g. related to icons,
+                    splash screen, and version information, consider the <code
+                      class="docutils literal notranslate"><span
+                      class="pre">--help</span></code>
+                    output for the details of these and check the section “Good Looks”.</p>
+                </div>
+                <p>Again, on Windows, for the temporary file directory, by default the user
+                  one is used, however this is overridable with a path specification given
+                  in <code class="docutils literal notranslate"><span class="pre">--windows-onefile-tempdir-spec=%TEMP%\\onefile_%PID%_%TIME%</span></code>
+                  which
+                  is the default and asserts that the temporary directories created cannot
+                  collide.</p>
+                <p>Currently these expanded tokens are available:</p>
+                <div class="wy-table-responsive">
+                  <table class="docutils align-default">
+                    <colgroup>
+                      <col style="width: 13%">
+                      <col style="width: 45%">
+                      <col style="width: 42%">
+                    </colgroup>
+                    <thead>
+                    <tr class="row-odd">
+                      <th class="head"><p>Token</p></th>
+                      <th class="head"><p>What this Expands to</p></th>
+                      <th class="head"><p>Example</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-even">
+                      <td><p>%TEMP%</p></td>
+                      <td><p>User temporary file directory</p></td>
+                      <td><p>C:Users...AppDataLocalsTemp</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>%PID%</p></td>
+                      <td><p>Process ID</p></td>
+                      <td><p>2772</p></td>
+                    </tr>
+                    <tr class="row-even">
+                      <td><p>%TIME%</p></td>
+                      <td><p>Time in seconds since the epoch.</p></td>
+                      <td><p>1299852985</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>%PROGRAM%</p></td>
+                      <td><p>Full program filename of executable.</p></td>
+                      <td><p>C:SomeWhereYourOnefile.exe</p></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>It is your responsibility to make the path provided unique, on
+                    Windows a running program will be locked, and while using a fixed
+                    folder name is possible, it can cause locking issues in that case,
+                    where the program gets restarted.</p>
+                  <p>Usually you need to use <code class="docutils literal notranslate"><span
+                    class="pre">%TIME%</span></code> or at least <code
+                    class="docutils literal notranslate"><span class="pre">%PID%</span></code>
+                    to make a
+                    path unique, and this is mainly intended for use cases, where e.g.
+                    you want things to reside in a place you choose or abide your naming
+                    conventions.</p>
+                </div>
+              </section>
+              <section id="use-case-5-setuptools-wheels">
+                <h3>Use Case 5 - Setuptools Wheels<a class="headerlink"
+                                                     href="https://nuitka.net/doc/user-manual.html#use-case-5-setuptools-wheels"
+                                                     title="Permalink to this headline"></a></h3>
+                <p>If you have a <code class="docutils literal notranslate"><span
+                  class="pre">setup.py</span></code>, <code
+                  class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>
+                  or <code class="docutils literal notranslate"><span
+                    class="pre">pyproject.toml</span></code> driven
+                  creation of wheels for your software in place, putting Nuitka to use is
+                  extremely easy.</p>
+                <p>Lets start with the most common <code class="docutils literal notranslate"><span
+                  class="pre">setuptools</span></code> approach, you can -
+                  having Nuitka installed of course, simply execute the target
+                  <code class="docutils literal notranslate"><span
+                    class="pre">bdist_nuitka</span></code> rather than the <code
+                    class="docutils literal notranslate"><span
+                    class="pre">bdist_wheel</span></code>. It takes all the
+                  options and allows you to specify some more, that are specific to
+                  Nuitka.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell12"><span></span><span class="c1"># For setup.py if not you't use other build systems:</span>
+<span class="n">setup</span><span class="p">(</span>
+   <span class="o">...</span><span class="p">,</span>
+   <span class="n">command_options</span><span class="o">=</span><span class="p">{</span>
+      <span class="s1">'nuitka'</span><span class="p">:</span> <span class="p">{</span>
+         <span class="c1"># boolean option, e.g. if you cared for C commands</span>
+         <span class="s1">'--show-scons'</span><span class="p">:</span> <span class="kc">True</span><span
+                      class="p">,</span>
+         <span class="c1"># options without value, e.g. enforce using Clang</span>
+         <span class="s1">'--clang'</span><span class="p">:</span> <span class="p">(</span><span
+                      class="s2">"setup.py"</span><span class="p">,</span> <span class="kc">None</span><span
+                      class="p">),</span>
+         <span class="c1"># options with single values, e.g. enable a plugin of Nuitka</span>
+         <span class="s1">'--enable-plugin'</span><span class="p">:</span> <span class="s1">'anti-bloat'</span><span
+                      class="p">,</span>
+         <span class="c1"># options with several values, e.g. avoiding including modules</span>
+         <span class="s1">'--nofollow-import-to'</span> <span class="p">:</span> <span class="p">[</span><span
+                      class="s2">"*.tests"</span><span class="p">,</span> <span class="s2">"*.distutils"</span><span
+                      class="p">],</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># For setup.py with other build systems:</span>
+<span class="c1"># The tuple nature of the arguments is required by the dark nature of</span>
+<span class="c1"># "setuptools" and plugins to it, that insist on full compatibility,</span>
+<span class="c1"># e.g. "setuptools_rust"</span>
+
+<span class="n">setup</span><span class="p">(</span>
+   <span class="o">...</span><span class="p">,</span>
+   <span class="n">command_options</span><span class="o">=</span><span class="p">{</span>
+      <span class="s1">'nuitka'</span><span class="p">:</span> <span class="p">{</span>
+         <span class="c1"># boolean option, e.g. if you cared for C commands</span>
+         <span class="s1">'--show-scons'</span><span class="p">:</span> <span class="p">(</span><span class="s2">"setup.py"</span><span
+                      class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+         <span class="c1"># options without value, e.g. enforce using Clang</span>
+         <span class="s1">'--clang'</span><span class="p">:</span> <span class="p">(</span><span
+                      class="s2">"setup.py"</span><span class="p">,</span> <span class="kc">None</span><span
+                      class="p">),</span>
+         <span class="c1"># options with single values, e.g. enable a plugin of Nuitka</span>
+         <span class="s1">'--enable-plugin'</span><span class="p">:</span> <span class="p">(</span><span class="s2">"setup.py"</span><span
+                      class="p">,</span> <span class="s1">'anti-bloat'</span><span class="p">),</span>
+         <span class="c1"># options with several values, e.g. avoiding including modules</span>
+         <span class="s1">'--nofollow-import-to'</span> <span class="p">:</span> <span class="p">(</span><span
+                      class="s2">"setup.py"</span><span class="p">,</span> <span
+                      class="p">[</span><span class="s2">"*.tests"</span><span
+                      class="p">,</span> <span class="s2">"*.distutils"</span><span class="p">]),</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+<span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell12">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>If for some reason, you cannot or do not what to change the target, you
+                  can add this to your <code class="docutils literal notranslate"><span
+                    class="pre">setup.py</span></code>.
+                </p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell13"><span></span><span class="c1"># For setup.py</span>
+<span class="n">setup</span><span class="p">(</span>
+   <span class="o">...</span><span class="p">,</span>
+   <span class="n">build_with_nuitka</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell13">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>To temporarily disable the compilation, you could remove above line,
+                    or edit the value to <code class="docutils literal notranslate"><span
+                      class="pre">False</span></code> by or take its value from an
+                    environment variable if you so choose, e.g.
+                    <code class="docutils literal notranslate"><span
+                      class="pre">bool(os.environ.get("USE_NUITKA",</span>
+                      <span class="pre">"True"))</span></code>. This is up to you.</p>
+                </div>
+                <p>Or you could put it in your <code class="docutils literal notranslate"><span
+                  class="pre">setup.cfg</span></code></p>
+                <div class="highlight-toml notranslate">
+                  <div class="highlight"><pre id="codecell14"><span></span><span
+                    class="k">[metadata]</span><span class="w"></span>
+<span class="n">build_with_nuitka</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span
+                      class="n">True</span><span class="w"></span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell14">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>And last, but not least, Nuitka also supports the new <code
+                  class="docutils literal notranslate"><span class="pre">build</span></code> meta,
+                  so
+                  when you have a <code class="docutils literal notranslate"><span
+                    class="pre">pyproject.toml</span></code>
+                  already, simple replace or add this
+                  value:</p>
+                <div class="highlight-toml notranslate">
+                  <div class="highlight"><pre id="codecell15"><span></span><span class="k">[build-system]</span><span
+                    class="w"></span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span
+                      class="p">[</span><span class="s">"setuptools&gt;=42"</span><span
+                      class="p">,</span><span class="w"> </span><span class="s">"wheel"</span><span
+                      class="p">,</span><span class="w"> </span><span
+                      class="s">"nuitka"</span><span class="p">]</span><span class="w"></span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span
+                      class="s">"nuitka.distutils.Build"</span><span class="w"></span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell15">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </section>
+            <section id="tweaks">
+              <h2>Tweaks<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#tweaks"
+                           title="Permalink to this headline"></a></h2>
+              <section id="icons">
+                <h3>Icons<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#icons"
+                            title="Permalink to this headline"></a></h3>
+                <p>For good looks, you may specify icons. On Windows, you can provide an
+                  icon file, a template executable, or a PNG file. All of these will work
+                  and may even be combined:</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell16"><span></span><span class="c1"># These create binaries with icons:</span>
+python -m nuitka --onefile --windows-icon-from-ico<span class="o">=</span>your-icon.png program.py
+python -m nuitka --onefile --windows-icon-from-ico<span class="o">=</span>your-icon.ico program.py
+python -m nuitka --onefile --windows-icon-template-exe<span class="o">=</span>your-icon.ico program.py
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell16">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </section>
+              <section id="splash-screen">
+                <h3>Splash screen<a class="headerlink"
+                                    href="https://nuitka.net/doc/user-manual.html#splash-screen"
+                                    title="Permalink to this headline"></a></h3>
+                <p>Splash screens are useful when program startup is slow. Onefile startup
+                  itself is not slow, but your program may be, and you cannot really know
+                  how fast the computer used will be, so it might be a good idea to have
+                  them. Luckily with Nuitka, they are easy to add for Windows.</p>
+                <p>For splash screen, you need to specify it as an PNG file, and then make
+                  sure to disable the splash screen when your program is ready, e.g. has
+                  complete the imports, prepared the window, connected to the database,
+                  and wants the splash screen to go away. Here we are using the project
+                  syntax to combine the code with the creation, compile this:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell17"><span></span><span
+                    class="c1"># nuitka-project: --onefile</span>
+<span class="c1"># nuitka-project: --onefile-windows-splash-screen-image={MAIN_DIRECTORY}/Splash-Screen.png</span>
+
+<span class="c1"># Whatever this is obviously</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Delaying startup by 10s..."</span><span
+                      class="p">)</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span
+                      class="p">)</span>
+
+<span class="c1"># Use this code to signal the splash screen removal.</span>
+<span class="k">if</span> <span class="s2">"NUITKA_ONEFILE_PARENT"</span> <span class="ow">in</span> <span
+                      class="n">os</span><span class="o">.</span><span
+                      class="n">environ</span><span class="p">:</span>
+   <span class="n">splash_filename</span> <span class="o">=</span> <span class="n">os</span><span
+                      class="o">.</span><span class="n">path</span><span
+                      class="o">.</span><span class="n">join</span><span class="p">(</span>
+      <span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span>
+      <span class="s2">"onefile_</span><span class="si">%d</span><span class="s2">_splash_feedback.tmp"</span> <span
+                      class="o">%</span> <span class="nb">int</span><span
+                      class="p">(</span><span class="n">os</span><span class="o">.</span><span
+                      class="n">environ</span><span class="p">[</span><span
+                      class="s2">"NUITKA_ONEFILE_PARENT"</span><span
+                      class="p">]),</span>
+   <span class="p">)</span>
+
+   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span
+                      class="o">.</span><span class="n">exists</span><span
+                      class="p">(</span><span class="n">splash_filename</span><span class="p">):</span>
+      <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span
+                      class="n">splash_filename</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Done... splash should be gone."</span><span
+                      class="p">)</span>
+<span class="o">...</span>
+
+<span class="c1"># Rest of your program goes here.</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell17">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </section>
+            <section id="typical-problems">
+              <h2>Typical Problems<a class="headerlink"
+                                     href="https://nuitka.net/doc/user-manual.html#typical-problems"
+                                     title="Permalink to this headline"></a></h2>
+              <section id="memory-issues-and-compiler-bugs">
+                <h3>Memory issues and compiler bugs<a class="headerlink"
+                                                      href="https://nuitka.net/doc/user-manual.html#memory-issues-and-compiler-bugs"
+                                                      title="Permalink to this headline"></a></h3>
+                <p>Sometimes the C compilers will crash saying they cannot allocate memory
+                  or that some input was truncated, or similar error messages, clearly
+                  from it. There are several options you can explore here:</p>
+                <section id="ask-nuitka-to-use-less-memory">
+                  <h4>Ask Nuitka to use less memory<a class="headerlink"
+                                                      href="https://nuitka.net/doc/user-manual.html#ask-nuitka-to-use-less-memory"
+                                                      title="Permalink to this headline"></a></h4>
+                  <p>There is a dedicated option <code class="docutils literal notranslate"><span
+                    class="pre">--low-memory</span></code> which influces decisions of
+                    Nuitka, such that it avoids high usage of memory during compilation at
+                    the cost of increased compile time.</p>
+                </section>
+                <section id="avoid-32-bit-c-compiler-assembler-memory-limits">
+                  <h4>Avoid 32 bit C compiler/assembler memory limits<a class="headerlink"
+                                                                        href="https://nuitka.net/doc/user-manual.html#avoid-32-bit-c-compiler-assembler-memory-limits"
+                                                                        title="Permalink to this headline"></a>
+                  </h4>
+                  <p>Do not use a 32 bits compiler, but a 64 bit one. If you are using Python
+                    with 32 bits on Windows, you most definitely ought to use MSVC as the C
+                    compiler, and not MinGW64. The MSVC is a cross compiler, and can use
+                    more memory than gcc on that platform. If you are not on Windows, that
+                    is not an option of course. Also using the 64 bits Python will work.</p>
+                </section>
+                <section id="use-lto-compilation-or-not">
+                  <h4>Use LTO compilation or not<a class="headerlink"
+                                                   href="https://nuitka.net/doc/user-manual.html#use-lto-compilation-or-not"
+                                                   title="Permalink to this headline"></a></h4>
+                  <p>With <code class="docutils literal notranslate"><span
+                    class="pre">--lto=yes</span></code> or <code
+                    class="docutils literal notranslate"><span
+                    class="pre">--lto=no</span></code> you can switch the C compilation to
+                    only produce bytecode, and not assembler code and machine code directly,
+                    but make a whole program optimization at the end. This will change the
+                    memory usage pretty dramatically, and if you error is coming from the
+                    assembler, using LTO will most definitely avoid that.</p>
+                </section>
+                <section id="switch-the-c-compiler-to-clang">
+                  <h4>Switch the C compiler to clang<a class="headerlink"
+                                                       href="https://nuitka.net/doc/user-manual.html#switch-the-c-compiler-to-clang"
+                                                       title="Permalink to this headline"></a></h4>
+                  <p>People have reported that programs that fail to compile with gcc due to
+                    its bugs or memory usage work fine with clang on Linux. On Windows, this
+                    could still be an option, but it needs to be implemented first for the
+                    automatic downloaded gcc, that would contain it. Since MSVC is known to
+                    be more memory effective anyway, you should go there, and if you want to
+                    use Clang, there is support for the one contained in MSVC.</p>
+                </section>
+                <section id="add-a-larger-swap-file-to-your-embedded-linux">
+                  <h4>Add a larger swap file to your embedded Linux<a class="headerlink"
+                                                                      href="https://nuitka.net/doc/user-manual.html#add-a-larger-swap-file-to-your-embedded-linux"
+                                                                      title="Permalink to this headline"></a>
+                  </h4>
+                  <p>On systems with not enough RAM, you need to use swap space. Running out
+                    of it is possibly a cause, and adding more swap space, or one at all,
+                    might solve the issue, but beware that it will make things extremely
+                    slow when the compilers swap back and forth, so consider the next tip
+                    first or on top of it.</p>
+                </section>
+                <section id="limit-the-amount-of-compilation-jobs">
+                  <h4>Limit the amount of compilation jobs<a class="headerlink"
+                                                             href="https://nuitka.net/doc/user-manual.html#limit-the-amount-of-compilation-jobs"
+                                                             title="Permalink to this headline"></a>
+                  </h4>
+                  <p>With the <code class="docutils literal notranslate"><span
+                    class="pre">--jobs</span></code> option of Nuitka, it will not start many C
+                    compiler
+                    instances at once, each competing for the scarce resource of RAM. By
+                    picking a value of one, only one C compiler instance will be running,
+                    and on a 8 core system, that reduces the amount of memory by factor 8,
+                    so that’s a natural choice right there.</p>
+                </section>
+              </section>
+              <section id="dynamic-sys-path">
+                <h3>Dynamic <code class="docutils literal notranslate"><span class="pre">sys.path</span></code><a
+                  class="headerlink"
+                  href="https://nuitka.net/doc/user-manual.html#dynamic-sys-path"
+                  title="Permalink to this headline"></a></h3>
+                <p>If your script modifies <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>
+                  to e.g. insert directories with
+                  source code relative to it, Nuitka will currently not be able to see
+                  those. However, if you set the <code class="docutils literal notranslate"><span
+                    class="pre">PYTHONPATH</span></code> to the resulting value,
+                  you will be able to compile it.</p>
+              </section>
+              <section id="missing-data-files-in-standalone">
+                <h3>Missing data files in standalone<a class="headerlink"
+                                                       href="https://nuitka.net/doc/user-manual.html#missing-data-files-in-standalone"
+                                                       title="Permalink to this headline"></a></h3>
+                <p>If your program fails to file data, it can cause all kinds of different
+                  behaviours, e.g. a package might complain it is not the right version,
+                  because a <code class="docutils literal notranslate"><span
+                    class="pre">VERSION</span></code> file check defaulted to unknown. The
+                  absence of
+                  icon files or help texts, may raise strange errors.</p>
+                <p>Often the error paths for files not being present are even buggy and
+                  will reveal programming errors like unbound local variables. Please look
+                  carefully at these exceptions keeping in mind that this can be the
+                  cause. If you program works without standalone, chances are data files
+                  might be cause.</p>
+              </section>
+              <section id="missing-dlls-in-standalone">
+                <h3>Missing DLLs in standalone<a class="headerlink"
+                                                 href="https://nuitka.net/doc/user-manual.html#missing-dlls-in-standalone"
+                                                 title="Permalink to this headline"></a></h3>
+                <p>Nuitka has plugins that deal with copying DLLs. For NumPy, SciPy,
+                  Tkinter, etc.</p>
+                <p>These need special treatment to be able to run on other systems.
+                  Manually copying them is not enough and will given strange errors.
+                  Sometimes newer version of packages, esp. NumPy can be unsupported. In
+                  this case you will have to raise an issue, and use the older one.</p>
+              </section>
+              <section id="dependency-creep-in-standalone">
+                <h3>Dependency creep in standalone<a class="headerlink"
+                                                     href="https://nuitka.net/doc/user-manual.html#dependency-creep-in-standalone"
+                                                     title="Permalink to this headline"></a></h3>
+                <p>Some packages are a single import, but to Nuitka mean that more than a
+                  thousand packages (literally) are to be included. The prime example of
+                  Pandas, which does want to plug and use just about everything you can
+                  imagine. Multiple frameworks for syntax highlighting everything
+                  imaginable take time.</p>
+                <p>Nuitka will have to learn effective caching to deal with this in the
+                  future. Right now, you will have to deal with huge compilation times for
+                  these.</p>
+                <p>For now, a major weapon in fighting dependency creap should be applied,
+                  namely the <code class="docutils literal notranslate"><span
+                    class="pre">anti-bloat</span></code> plugin, which offers interesting
+                  abilities,
+                  that can be put to use and block unneeded imports, giving an error for
+                  where they occur. Use it e.g. like this <code
+                    class="docutils literal notranslate"><span class="pre">--enable-plugin=anti-bloat</span>
+                    <span class="pre">--noinclude-pytest-mode=nofollow</span> <span class="pre">--noinclude-setuptools-mode=nofollow</span></code>
+                  and check its help output. It can take for each module of your choice,
+                  e.g. forcing also that PyQt5 is considered uninstalled for standalone
+                  mode.</p>
+              </section>
+              <section id="onefile-finding-files">
+                <h3>Onefile: Finding files<a class="headerlink"
+                                             href="https://nuitka.net/doc/user-manual.html#onefile-finding-files"
+                                             title="Permalink to this headline"></a></h3>
+                <p>There is a difference between <code class="docutils literal notranslate"><span
+                  class="pre">sys.argv[0]</span></code> and <code
+                  class="docutils literal notranslate"><span class="pre">__file__</span></code> of
+                  the
+                  main module for onefile more, that is caused by using a bootstrap to a
+                  temporary location. The first one will be the original executable path,
+                  where as the second one will be the temporary or permanent path the
+                  bootstrap executable unpacks to. Data files will be in the later
+                  location, your original environment files will be in the former
+                  location.</p>
+                <p>Given 2 files, one which you expect to be near your executable, and one
+                  which you expect to be inside the onefile binary, access them like this.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell18"><span></span><span class="c1"># This will find a file near your onefile.exe</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span
+                      class="o">.</span><span class="n">join</span><span
+                      class="p">(</span><span class="n">os</span><span class="o">.</span><span
+                      class="n">path</span><span class="o">.</span><span
+                      class="n">dirname</span><span class="p">(</span><span
+                      class="n">sys</span><span class="o">.</span><span
+                      class="n">argv</span><span class="p">[</span><span
+                      class="mi">0</span><span class="p">]),</span> <span
+                      class="s2">"user-provided-file.txt"</span><span
+                      class="p">))</span>
+<span class="c1"># This will find a file inside your onefile.exe</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span
+                      class="o">.</span><span class="n">join</span><span
+                      class="p">(</span><span class="n">os</span><span class="o">.</span><span
+                      class="n">path</span><span class="o">.</span><span
+                      class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span
+                      class="p">),</span> <span
+                      class="s2">"user-provided-file.txt"</span><span class="p">))</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell18">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </section>
+              <section id="windows-programs-without-console-give-no-errors">
+                <h3>Windows Programs without console give no errors<a class="headerlink"
+                                                                      href="https://nuitka.net/doc/user-manual.html#windows-programs-without-console-give-no-errors"
+                                                                      title="Permalink to this headline"></a>
+                </h3>
+                <p>For debugging purposes, remove <code class="docutils literal notranslate"><span
+                  class="pre">--windows-disable-console</span></code> or use the
+                  options <code class="docutils literal notranslate"><span
+                    class="pre">--windows-force-stdout-spec</span></code>
+                  and
+                  <code class="docutils literal notranslate"><span class="pre">--windows-force-stderr-spec</span></code>
+                  with paths as documented for
+                  <code class="docutils literal notranslate"><span
+                    class="pre">--windows-onefile-tempdir-spec</span></code>
+                  above.</p>
+              </section>
+            </section>
+            <section id="tips">
+              <h2>Tips<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#tips"
+                         title="Permalink to this headline"></a></h2>
+              <section id="nuitka-options-in-the-code">
+                <h3>Nuitka Options in the code<a class="headerlink"
+                                                 href="https://nuitka.net/doc/user-manual.html#nuitka-options-in-the-code"
+                                                 title="Permalink to this headline"></a></h3>
+                <p>There is support for conditional options, and options using pre-defined
+                  variables, this is an example:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell19"><span></span><span class="c1"># Compilation mode, support OS specific.</span>
+<span class="c1"># nuitka-project-if: {OS} in ("Windows", "Linux", "Darwin", "FreeBSD"):</span>
+<span class="c1">#    nuitka-project: --onefile</span>
+<span class="c1"># nuitka-project-if: {OS} not in ("Windows", "Linux", "Darwin", "FreeBSD"):</span>
+<span class="c1">#    nuitka-project: --standalone</span>
+
+<span class="c1"># The PySide2 plugin covers qt-plugins</span>
+<span class="c1"># nuitka-project: --enable-plugin=pyside2</span>
+<span class="c1"># nuitka-project: --include-qt-plugins=sensible,qml</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell19">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The comments must be a start of line, and indentation is to be used, to
+                  end a conditional block, much like in Python. There are currently no
+                  other keywords than the used ones demonstrated above.</p>
+                <p>You can put abitrary Python expressions there, and if you wanted to e.g.
+                  access a version information of a package, you could simply use
+                  <code class="docutils literal notranslate"><span
+                    class="pre">__import__("module_name").__version__</span></code>
+                  if that would be required to
+                  e.g. enable or disable certain Nuitka settings. The only thing Nuitka
+                  does that makes this not Python expressions, is expanding <code
+                    class="docutils literal notranslate"><span
+                    class="pre">{variable}</span></code>
+                  for a pre-defined set of variables:</p>
+                <p>Table with supported variables:</p>
+                <div class="wy-table-responsive">
+                  <table class="docutils align-default">
+                    <colgroup>
+                      <col style="width: 20%">
+                      <col style="width: 35%">
+                      <col style="width: 46%">
+                    </colgroup>
+                    <thead>
+                    <tr class="row-odd">
+                      <th class="head"><p>Variable</p></th>
+                      <th class="head"><p>What this Expands to</p></th>
+                      <th class="head"><p>Example</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-even">
+                      <td><p>{OS}</p></td>
+                      <td><p>Name of the OS used</p></td>
+                      <td><p>Linux, Windows, Darwin, FreeBSD, OpenBSD</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>{Version}</p></td>
+                      <td><p>Version of Nuitka</p></td>
+                      <td><p>e.g. (0, 6, 16)</p></td>
+                    </tr>
+                    <tr class="row-even">
+                      <td><p>{Commercial}</p></td>
+                      <td><p>Version of Nuitka Commercial</p></td>
+                      <td><p>e.g. (0, 9, 4)</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>{Arch}</p></td>
+                      <td><p>Architecture used</p></td>
+                      <td><p>x86_64, arm64, etc.</p></td>
+                    </tr>
+                    <tr class="row-even">
+                      <td><p>{MAIN_DIRECTORY}</p></td>
+                      <td><p>Directory of the compiled file</p></td>
+                      <td><p>some_dir/maybe_relative</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>{Flavor}</p></td>
+                      <td><p>Variant of Python</p></td>
+                      <td><p>e.g. Debian Python, Anaconda Python</p></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <section id="python-command-line-flags">
+                <h3>Python command line flags<a class="headerlink"
+                                                href="https://nuitka.net/doc/user-manual.html#python-command-line-flags"
+                                                title="Permalink to this headline"></a></h3>
+                <p>For passing things like <code class="docutils literal notranslate"><span class="pre">-O</span></code>
+                  or <code class="docutils literal notranslate"><span class="pre">-S</span></code> to
+                  Python, to your compiled
+                  program, there is a command line option name <code
+                    class="docutils literal notranslate"><span class="pre">--python-flag=</span></code>
+                  which
+                  makes Nuitka emulate these options.</p>
+                <p>The most important ones are supported, more can certainly be added.</p>
+              </section>
+              <section id="caching-compilation-results">
+                <h3>Caching compilation results<a class="headerlink"
+                                                  href="https://nuitka.net/doc/user-manual.html#caching-compilation-results"
+                                                  title="Permalink to this headline"></a></h3>
+                <p>The C compiler, when invoked with the same input files, will take a long
+                  time and much CPU to compile over and over. Make sure you are having
+                  <code class="docutils literal notranslate"><span class="pre">ccache</span></code>
+                  installed and configured when using gcc (even on Windows). It
+                  will make repeated compilations much faster, even if things are not yet
+                  not perfect, i.e. changes to the program can cause many C files to
+                  change, requiring a new compilation instead of using the cached result.</p>
+                <p>On Windows, with gcc Nuitka supports using <code
+                  class="docutils literal notranslate"><span class="pre">ccache.exe</span></code>
+                  which it will
+                  offer to download from an official source and it automatically. This is
+                  the recommended way of using it on Windows, as other versions can e.g.
+                  hang.</p>
+                <p>Nuitka will pick up <code class="docutils literal notranslate"><span class="pre">ccache</span></code>
+                  if it’s in found in system <code class="docutils literal notranslate"><span
+                    class="pre">PATH</span></code>, and
+                  it will also be possible to provide if by setting
+                  <code class="docutils literal notranslate"><span
+                    class="pre">NUITKA_CCACHE_BINARY</span></code> to the full path of the
+                  binary, this is for use
+                  in CI systems.</p>
+                <p>For the MSVC compilers and ClangCL setups, using the <code
+                  class="docutils literal notranslate"><span class="pre">clcache</span></code> is
+                  automatic and included in Nuitka.</p>
+              </section>
+              <section id="control-where-caches-live">
+                <h3>Control where Caches live<a class="headerlink"
+                                                href="https://nuitka.net/doc/user-manual.html#control-where-caches-live"
+                                                title="Permalink to this headline"></a></h3>
+                <p>The storage for cache results of all kinds, downloads, cached
+                  compilation results from C and Nuitka, is done in a platform dependent
+                  directory as determined by the <code class="docutils literal notranslate"><span
+                    class="pre">appdirs</span></code> package. However, you can
+                  override it with setting the environment variable <code
+                    class="docutils literal notranslate"><span
+                    class="pre">NUITKA_CACHE_DIR</span></code>
+                  to a base directory. This is for use in environments where the home
+                  directory is not persisted, but other paths are.</p>
+              </section>
+              <section id="runners">
+                <h3>Runners<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#runners"
+                              title="Permalink to this headline"></a></h3>
+                <p>Avoid running the <code class="docutils literal notranslate"><span
+                  class="pre">nuitka</span></code> binary, doing <code
+                  class="docutils literal notranslate"><span class="pre">python</span> <span
+                  class="pre">-m</span> <span class="pre">nuitka</span></code> will
+                  make a 100% sure you are using what you think you are. Using the wrong
+                  Python will make it give you <code class="docutils literal notranslate"><span
+                    class="pre">SyntaxError</span></code> for good code or
+                  <code class="docutils literal notranslate"><span
+                    class="pre">ImportError</span></code> for installed modules. That is
+                  happening, when you run
+                  Nuitka with Python2 on Python3 code and vice versa. By explicitly
+                  calling the same Python interpreter binary, you avoid that issue
+                  entirely.</p>
+              </section>
+              <section id="fastest-c-compilers">
+                <h3>Fastest C Compilers<a class="headerlink"
+                                          href="https://nuitka.net/doc/user-manual.html#fastest-c-compilers"
+                                          title="Permalink to this headline"></a></h3>
+                <p>The fastest binaries of <code class="docutils literal notranslate"><span
+                  class="pre">pystone.exe</span></code>
+                  on Windows with 64 bits Python
+                  proved to be significantly faster with MinGW64, roughly 20% better
+                  score. So it is recommended for use over MSVC. Using <code
+                    class="docutils literal notranslate"><span
+                    class="pre">clang-cl.exe</span></code> of
+                  Clang7 was faster than MSVC, but still significantly slower than
+                  MinGW64, and it will be harder to use, so it is not recommended.</p>
+                <p>On Linux for <code class="docutils literal notranslate"><span
+                  class="pre">pystone.bin</span></code> the binary produced by <code
+                  class="docutils literal notranslate"><span class="pre">clang6</span></code> was
+                  faster than <code class="docutils literal notranslate"><span
+                    class="pre">gcc-6.3</span></code>, but not by a significant margin. Since
+                  gcc is
+                  more often already installed, that is recommended to use for now.</p>
+                <p>Differences in C compilation times have not yet been examined.</p>
+              </section>
+              <section id="unexpected-slowdowns">
+                <h3>Unexpected Slowdowns<a class="headerlink"
+                                           href="https://nuitka.net/doc/user-manual.html#unexpected-slowdowns"
+                                           title="Permalink to this headline"></a></h3>
+                <p>Using the Python DLL, like standard CPython does can lead to unexpected
+                  slowdowns, e.g. in uncompiled code that works with Unicode strings. This
+                  is because calling to the DLL rather than residing in the DLL causes
+                  overhead, and this even happens to the DLL with itself, being slower,
+                  than a Python all contained in one binary.</p>
+                <p>So if feasible, aim at static linking, which is currently only possible
+                  with Anaconda Python on non-Windows, Debian Python2, self compiled
+                  Pythons (do not activate <code class="docutils literal notranslate"><span
+                    class="pre">--enable-shared</span></code>, not needed), and installs
+                  created with <code class="docutils literal notranslate"><span
+                    class="pre">pyenv</span></code>.</p>
+                <div class="admonition note">
+                  <p class="admonition-title">Note</p>
+                  <p>On Anaconda, you may need to execute <code
+                    class="docutils literal notranslate"><span class="pre">conda</span> <span
+                    class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span>
+                    <span class="pre">libpython-static</span></code></p>
+                </div>
+              </section>
+              <section id="standalone-executables-and-dependencies">
+                <h3>Standalone executables and dependencies<a class="headerlink"
+                                                              href="https://nuitka.net/doc/user-manual.html#standalone-executables-and-dependencies"
+                                                              title="Permalink to this headline"></a>
+                </h3>
+                <p>The process of making standalone executables for Windows traditionally
+                  involves using an external dependency walker in order to copy necessary
+                  libraries along with the compiled executables to the distribution
+                  folder.</p>
+                <p>There is plenty of ways to find that something is missing. Do not
+                  manually copy things into the folder, esp. not DLLs, as that’s not going
+                  to work. Instead make bug reports to get these handled by Nuitka
+                  properly.</p>
+              </section>
+              <section id="windows-errors-with-resources">
+                <h3>Windows errors with resources<a class="headerlink"
+                                                    href="https://nuitka.net/doc/user-manual.html#windows-errors-with-resources"
+                                                    title="Permalink to this headline"></a></h3>
+                <p>On Windows, the Windows Defender tool and the Windows Indexing Service
+                  both scan the freshly created binaries, while Nuitka wants to work with
+                  it, e.g. adding more resources, and then preventing operations randomly
+                  due to holding locks. Make sure to exclude your compilation stage from
+                  these services.</p>
+              </section>
+              <section id="windows-standalone-program-redistribuation">
+                <h3>Windows standalone program redistribuation<a class="headerlink"
+                                                                 href="https://nuitka.net/doc/user-manual.html#windows-standalone-program-redistribuation"
+                                                                 title="Permalink to this headline"></a>
+                </h3>
+                <p>Whether compiling with MingW or MSVC, the standalone programs have
+                  external dependencies to Visual C Runtime libraries. Nuitka tries to
+                  ship those dependent DLLs by copying them from your system.</p>
+                <p>Beginning with Microsoft Windows 10, Microsoft ships <code
+                  class="docutils literal notranslate"><span class="pre">ucrt.dll</span></code>
+                  (Universal C Runtime libraries) which rehook calls to
+                  <code class="docutils literal notranslate"><span class="pre">api-ms-crt-*.dll</span></code>.
+                </p>
+                <p>With earlier Windows platforms (and wine/ReactOS), you should consider
+                  installing Visual C Runtime libraries before executing a Nuitka
+                  standalone compiled program.</p>
+                <p>Depending on the used C compiler, you’ll need the following redist
+                  versions:</p>
+                <div class="wy-table-responsive">
+                  <table class="docutils align-default">
+                    <colgroup>
+                      <col style="width: 29%">
+                      <col style="width: 21%">
+                      <col style="width: 50%">
+                    </colgroup>
+                    <thead>
+                    <tr class="row-odd">
+                      <th class="head"><p>Visual C version</p></th>
+                      <th class="head"><p>Redist Year</p></th>
+                      <th class="head"><p>CPython</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-even">
+                      <td><p>14.2</p></td>
+                      <td><p>2019</p></td>
+                      <td><p>3.5, 3.6, 3.7, 3.8, 3.9, 3.10</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>14.1</p></td>
+                      <td><p>2017</p></td>
+                      <td><p>3.5, 3.6, 3.7, 3.8</p></td>
+                    </tr>
+                    <tr class="row-even">
+                      <td><p>14.0</p></td>
+                      <td><p>2015</p></td>
+                      <td><p>3.5, 3.6, 3.7, 3.8</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>10.0</p></td>
+                      <td><p>2010</p></td>
+                      <td><p>3.3, 3.4</p></td>
+                    </tr>
+                    <tr class="row-even">
+                      <td><p>9.0</p></td>
+                      <td><p>2008</p></td>
+                      <td><p>2.6, 2.7</p></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>When using MingGW64, you’ll need the following redist versions:</p>
+                <div class="wy-table-responsive">
+                  <table class="docutils align-default">
+                    <colgroup>
+                      <col style="width: 29%">
+                      <col style="width: 21%">
+                      <col style="width: 50%">
+                    </colgroup>
+                    <thead>
+                    <tr class="row-odd">
+                      <th class="head"><p>MingGW64 version</p></th>
+                      <th class="head"><p>Redist Year</p></th>
+                      <th class="head"><p>CPython</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-even">
+                      <td><p>8.1.0</p></td>
+                      <td><p>2015</p></td>
+                      <td><p>3.5, 3.6, 3.7, 3.8, 3.9, 3.10</p></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Once the corresponding runtime libraries are installed on the target
+                  system, you may remove all <code class="docutils literal notranslate"><span
+                    class="pre">api-ms-crt-*.dll</span></code> files from your Nuitka
+                  compiled dist folder.</p>
+              </section>
+              <section id="detecting-nuitka-at-run-time">
+                <h3>Detecting Nuitka at run time<a class="headerlink"
+                                                   href="https://nuitka.net/doc/user-manual.html#detecting-nuitka-at-run-time"
+                                                   title="Permalink to this headline"></a></h3>
+                <p>It doesn’t set <code class="docutils literal notranslate"><span class="pre">sys.frozen</span></code>
+                  unlike other tools. For Nuitka, we have
+                  the module attribute <code class="docutils literal notranslate"><span class="pre">__compiled__</span></code>
+                  to test if a specific module was
+                  compiled.</p>
+              </section>
+            </section>
+            <section id="performance">
+              <h2>Performance<a class="headerlink"
+                                href="https://nuitka.net/doc/user-manual.html#performance"
+                                title="Permalink to this headline"></a></h2>
+              <p>This chapter gives an overview, of what to currently expect in terms of
+                performance from Nuitka. It’s a work in progress and is updated as we
+                go. The current focus for performance measurements is Python 2.7, but
+                3.x is going to follow later.</p>
+              <section id="pystone-results">
+                <h3>pystone results<a class="headerlink"
+                                      href="https://nuitka.net/doc/user-manual.html#pystone-results"
+                                      title="Permalink to this headline"></a></h3>
+                <p>The results are the top value from this kind of output, running pystone
+                  1000 times and taking the minimal value. The idea is that the fastest
+                  run is most meanigful, and eliminates usage spikes.</p>
+                <div class="highlight-bash notranslate">
+                  <div class="highlight"><pre id="codecell20"><span></span><span
+                    class="nb">echo</span> <span class="s2">"Uncompiled Python2"</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..100<span
+                      class="o">}</span><span class="p">;</span> <span
+                      class="k">do</span> <span class="nv">BENCH</span><span
+                      class="o">=</span><span class="m">1</span> python2 tests/benchmarks/pystone.py <span
+                      class="p">;</span> <span class="k">done</span> <span class="p">|</span> sort -n -r <span
+                      class="p">|</span> head -n <span class="m">1</span>
+python2 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>yes tests/benchmarks/pystone.py
+<span class="nb">echo</span> <span class="s2">"Compiled Python2"</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..100<span
+                      class="o">}</span><span class="p">;</span> <span
+                      class="k">do</span> <span class="nv">BENCH</span><span
+                      class="o">=</span><span class="m">1</span> ./pystone.bin <span
+                      class="p">;</span> <span class="k">done</span> <span class="p">|</span> sort -n -r <span
+                      class="p">|</span> head -n <span class="m">1</span>
+
+<span class="nb">echo</span> <span class="s2">"Uncompiled Python3"</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..100<span
+                      class="o">}</span><span class="p">;</span> <span
+                      class="k">do</span> <span class="nv">BENCH</span><span
+                      class="o">=</span><span class="m">1</span> python3 tests/benchmarks/pystone3.py <span
+                      class="p">;</span> <span class="k">done</span> <span class="p">|</span> sort -n -r <span
+                      class="p">|</span> head -n <span class="m">1</span>
+python3 -m nuitka --lto<span class="o">=</span>yes --pgo<span class="o">=</span>yes tests/benchmarks/pystone3.py
+<span class="nb">echo</span> <span class="s2">"Compiled Python3"</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..100<span
+                      class="o">}</span><span class="p">;</span> <span
+                      class="k">do</span> <span class="nv">BENCH</span><span
+                      class="o">=</span><span class="m">1</span> ./pystone3.bin <span
+                      class="p">;</span> <span class="k">done</span> <span class="p">|</span> sort -n -r <span
+                      class="p">|</span> head -n <span class="m">1</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell20">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="wy-table-responsive">
+                  <table class="docutils align-default">
+                    <colgroup>
+                      <col style="width: 23%">
+                      <col style="width: 23%">
+                      <col style="width: 27%">
+                      <col style="width: 26%">
+                    </colgroup>
+                    <thead>
+                    <tr class="row-odd">
+                      <th class="head"><p>Python</p></th>
+                      <th class="head"><p>Uncompiled</p></th>
+                      <th class="head"><p>Compiled LTO</p></th>
+                      <th class="head"><p>Compiled PGO</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row-even">
+                      <td><p>Debian Python 2.7</p></td>
+                      <td><p>137497.87 (1.000)</p></td>
+                      <td><p>460995.20 (3.353)</p></td>
+                      <td><p>503681.91 (3.663)</p></td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td><p>Nuitka Python 2.7</p></td>
+                      <td><p>144074.78 (1.048)</p></td>
+                      <td><p>479271.51 (3.486)</p></td>
+                      <td><p>511247.44 (3.718)</p></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </section>
+            <section id="where-to-go-next">
+              <h2>Where to go next<a class="headerlink"
+                                     href="https://nuitka.net/doc/user-manual.html#where-to-go-next"
+                                     title="Permalink to this headline"></a></h2>
+              <p>Remember, this project is not completed yet. Although the CPython test
+                suite works near perfect, there is still more work needed, esp. to make
+                it do more optimization. Try it out.</p>
+              <section id="follow-me-on-twitter">
+                <h3>Follow me on Twitter<a class="headerlink"
+                                           href="https://nuitka.net/doc/user-manual.html#follow-me-on-twitter"
+                                           title="Permalink to this headline"></a></h3>
+                <p>Nuitka announcements and interesting stuff is pointed to on the Twitter
+                  account, but obviously with not too many details. <a class="reference external"
+                                                                       href="https://twitter.com/KayHayen"
+                                                                       target="_blank">@KayHayen</a>.
+                </p>
+              </section>
+              <section id="report-issues-or-bugs">
+                <h3>Report issues or bugs<a class="headerlink"
+                                            href="https://nuitka.net/doc/user-manual.html#report-issues-or-bugs"
+                                            title="Permalink to this headline"></a></h3>
+                <p>Should you encounter any issues, bugs, or ideas, please visit the
+                  <a class="reference external" href="https://github.com/kayhayen/Nuitka/issues"
+                     target="_blank">Nuitka bug tracker</a> and
+                  report them.</p>
+                <p>Best practices for reporting bugs:</p>
+                <ul>
+                  <li><p>Please always include the following information in your report, for
+                    the underlying Python version. You can easily copy&amp;paste this into
+                    your report.</p>
+                    <div class="highlight-bash notranslate">
+                      <div class="highlight"><pre id="codecell21"><span></span>python -m nuitka --version
+</pre>
+                        <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                                data-clipboard-target="#codecell21">
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               class="icon icon-tabler icon-tabler-copy" width="44"
+                               height="44" viewBox="0 0 24 24" stroke-width="1.5"
+                               stroke="#000000" fill="none" stroke-linecap="round"
+                               stroke-linejoin="round">
+                            <title>Copy to clipboard</title>
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                            <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                  <li><p>Try to make your example minimal. That is, try to remove code that
+                    does not contribute to the issue as much as possible. Ideally come up
+                    with a small reproducing program that illustrates the issue, using
+                    <code class="docutils literal notranslate"><span class="pre">print</span></code>
+                    with different results when that programs runs compiled or
+                    native.</p></li>
+                  <li><p>If the problem occurs spuriously (i.e. not each time), try to set the
+                    environment variable <code class="docutils literal notranslate"><span
+                      class="pre">PYTHONHASHSEED</span></code> to <code
+                      class="docutils literal notranslate"><span class="pre">0</span></code>,
+                    disabling hash
+                    randomization. If that makes the problem go away, try increasing in
+                    steps of 1 to a hash seed value that makes it happen every time,
+                    include it in your report.</p></li>
+                  <li><p>Do not include the created code in your report. Given proper input,
+                    it’s redundant, and it’s not likely that I will look at it without
+                    the ability to change the Python or Nuitka source and re-run it.</p></li>
+                  <li><p>Do not send screenshots of text, that is bad and lazy. Instead,
+                    capture text outputs from the console.</p></li>
+                </ul>
+              </section>
+              <section id="word-of-warning">
+                <h3>Word of Warning<a class="headerlink"
+                                      href="https://nuitka.net/doc/user-manual.html#word-of-warning"
+                                      title="Permalink to this headline"></a></h3>
+                <p>Consider using this software with caution. Even though many tests are
+                  applied before releases, things are potentially breaking. Your feedback
+                  and patches to Nuitka are very welcome.</p>
+              </section>
+            </section>
+            <section id="join-nuitka">
+              <h2>Join Nuitka<a class="headerlink"
+                                href="https://nuitka.net/doc/user-manual.html#join-nuitka"
+                                title="Permalink to this headline"></a></h2>
+              <p>You are more than welcome to join Nuitka development and help to
+                complete the project in all minor and major ways.</p>
+              <p>The development of Nuitka occurs in git. We currently have these 3
+                branches:</p>
+              <ul>
+                <li><p><code class="docutils literal notranslate"><span class="pre">main</span></code>
+                </p>
+                  <p>This branch contains the stable release to which only hotfixes for
+                    bugs will be done. It is supposed to work at all times and is
+                    supported.</p>
+                </li>
+                <li><p><code class="docutils literal notranslate"><span
+                  class="pre">develop</span></code></p>
+                  <p>This branch contains the ongoing development. It may at times contain
+                    little regressions, but also new features. On this branch, the
+                    integration work is done, whereas new features might be developed on
+                    feature branches.</p>
+                </li>
+                <li><p><code class="docutils literal notranslate"><span
+                  class="pre">factory</span></code></p>
+                  <p>This branch contains unfinished and incomplete work. It is very
+                    frequently subject to <code class="docutils literal notranslate"><span
+                      class="pre">git</span> <span class="pre">rebase</span></code> and the
+                    public staging ground,
+                    where my work for develop branch lives first. It is intended for
+                    testing only and recommended to base any of your own development on.
+                    When updating it, you very often will get merge conflicts. Simply
+                    resolve those by doing <code class="docutils literal notranslate"><span
+                      class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span>
+                      <span class="pre">origin/factory</span></code> and switch
+                    to the latest version.</p>
+                </li>
+              </ul>
+              <div class="admonition note">
+                <p class="admonition-title">Note</p>
+                <p>The <a class="reference external"
+                          href="https://nuitka.net/doc/developer-manual.html">Developer Manual</a>
+                  explains the coding
+                  rules, branching model used, with feature branches and hotfix
+                  releases, the Nuitka design and much more. Consider reading it to
+                  become a contributor. This document is intended for Nuitka users.</p>
+              </div>
+            </section>
+            <section id="donations">
+              <h2>Donations<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#donations"
+                              title="Permalink to this headline"></a></h2>
+              <p>Should you feel that you cannot help Nuitka directly, but still want to
+                support, please consider <a class="reference external"
+                                            href="https://nuitka.net/pages/donations.html">making a
+                  donation</a> and help this way.</p>
+            </section>
+            <section id="unsupported-functionality">
+              <h2>Unsupported functionality<a class="headerlink"
+                                              href="https://nuitka.net/doc/user-manual.html#unsupported-functionality"
+                                              title="Permalink to this headline"></a></h2>
+              <section id="the-co-code-attribute-of-code-objects">
+                <h3>The <code class="docutils literal notranslate"><span
+                  class="pre">co_code</span></code> attribute of code objects<a class="headerlink"
+                                                                                href="https://nuitka.net/doc/user-manual.html#the-co-code-attribute-of-code-objects"
+                                                                                title="Permalink to this headline"></a>
+                </h3>
+                <p>The code objects are empty for native compiled functions. There is no
+                  bytecode with Nuitka’s compiled function objects, so there is no way to
+                  provide it.</p>
+              </section>
+              <section id="pdb">
+                <h3>PDB<a class="headerlink" href="https://nuitka.net/doc/user-manual.html#pdb"
+                          title="Permalink to this headline"></a></h3>
+                <p>There is no tracing of compiled functions to attach a debugger to.</p>
+              </section>
+            </section>
+            <section id="optimization">
+              <h2>Optimization<a class="headerlink"
+                                 href="https://nuitka.net/doc/user-manual.html#optimization"
+                                 title="Permalink to this headline"></a></h2>
+              <section id="constant-folding">
+                <h3>Constant Folding<a class="headerlink"
+                                       href="https://nuitka.net/doc/user-manual.html#constant-folding"
+                                       title="Permalink to this headline"></a></h3>
+                <p>The most important form of optimization is the constant folding. This is
+                  when an operation can be fully predicted at compile time. Currently,
+                  Nuitka does these for some built-ins (but not all yet, somebody to look
+                  at this more closely will be very welcome!), and it does it e.g. for
+                  binary/unary operations and comparisons.</p>
+                <p>Constants currently recognized:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell22"><span></span><span
+                    class="mi">5</span> <span class="o">+</span> <span
+                    class="mi">6</span>  <span class="c1"># binary operations</span>
+<span class="ow">not</span> <span class="mi">7</span>  <span class="c1"># unary operations</span>
+<span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">6</span>  <span class="c1"># comparisons</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span
+                      class="c1"># built-ins</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell22">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>Literals are the one obvious source of constants, but also most likely
+                  other optimization steps like constant propagation or function inlining
+                  will be. So this one should not be underestimated and a very important
+                  step of successful optimizations. Every option to produce a constant may
+                  impact the generated code quality a lot.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>The folding of constants is considered implemented, but it might be
+                    incomplete in that not all possible cases are caught. Please report
+                    it as a bug when you find an operation in Nuitka that has only
+                    constants as input and is not folded.</p>
+                </div>
+              </section>
+              <section id="constant-propagation">
+                <h3>Constant Propagation<a class="headerlink"
+                                           href="https://nuitka.net/doc/user-manual.html#constant-propagation"
+                                           title="Permalink to this headline"></a></h3>
+                <p>At the core of optimizations, there is an attempt to determine the
+                  values of variables at run time and predictions of assignments. It
+                  determines if their inputs are constants or of similar values. An
+                  expression, e.g. a module variable access, an expensive operation, may
+                  be constant across the module of the function scope and then there needs
+                  to be none or no repeated module variable look-up.</p>
+                <p>Consider e.g. the module attribute <code class="docutils literal notranslate"><span
+                  class="pre">__name__</span></code> which likely is only
+                  ever read, so its value could be predicted to a constant string known at
+                  compile time. This can then be used as input to the constant folding.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell23"><span></span><span
+                    class="k">if</span> <span class="vm">__name__</span> <span
+                    class="o">==</span> <span class="s2">"__main__"</span><span
+                    class="p">:</span>
+    <span class="c1"># Your test code might be here</span>
+    <span class="n">use_something_not_use_by_program</span><span class="p">()</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell23">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>From modules attributes, only <code class="docutils literal notranslate"><span
+                    class="pre">__name__</span></code> is currently actually
+                    optimized. Also possible would be at least <code
+                      class="docutils literal notranslate"><span
+                      class="pre">__doc__</span></code>. In the
+                    future, this may improve as SSA is expanded to module variables.</p>
+                </div>
+              </section>
+              <section id="built-in-name-lookups">
+                <h3>Built-in Name Lookups<a class="headerlink"
+                                            href="https://nuitka.net/doc/user-manual.html#built-in-name-lookups"
+                                            title="Permalink to this headline"></a></h3>
+                <p>Also, built-in exception name references are optimized if they are used
+                  as a module level read-only variables:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell24"><span></span><span
+                    class="k">try</span><span class="p">:</span>
+    <span class="n">something</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>  <span class="c1"># The ValueError is a slow global name lookup normally.</span>
+    <span class="k">pass</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell24">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This works for all built-in names. When an assignment is done to such
+                    a name, or it’s even local, then, of course, it is not done.</p>
+                </div>
+              </section>
+              <section id="built-in-call-prediction">
+                <h3>Built-in Call Prediction<a class="headerlink"
+                                               href="https://nuitka.net/doc/user-manual.html#built-in-call-prediction"
+                                               title="Permalink to this headline"></a></h3>
+                <p>For built-in calls like <code class="docutils literal notranslate"><span
+                  class="pre">type</span></code>,
+                  <code class="docutils literal notranslate"><span class="pre">len</span></code>, or
+                  <code class="docutils literal notranslate"><span class="pre">range</span></code> it
+                  is often
+                  possible to predict the result at compile time, esp. for constant inputs
+                  the resulting value often can be precomputed by Nuitka. It can simply
+                  determine the result or the raised exception and replace the built-in
+                  call with that value, allowing for more constant folding or code path
+                  reduction.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell25"><span></span><span
+                    class="nb">type</span><span class="p">(</span><span
+                    class="s2">"string"</span><span class="p">)</span>  <span class="c1"># predictable result, builtin type str.</span>
+<span class="nb">len</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span
+                      class="mi">2</span><span class="p">])</span>  <span class="c1"># predictable result</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span
+                      class="p">,</span> <span class="mi">2</span><span
+                      class="p">)</span>  <span class="c1"># predictable result</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span
+                      class="p">,</span> <span class="mi">0</span><span
+                      class="p">)</span>  <span class="c1"># predictable exception, range raises due to 0.</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell25">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>The built-in call prediction is considered implemented. We can simply
+                    during compile time emulate the call and use its result or raised
+                    exception. But we may not cover all the built-ins there are yet.</p>
+                </div>
+                <p>Sometimes the result of a built-in should not be predicted when the
+                  result is big. A <code class="docutils literal notranslate"><span class="pre">range()</span></code>
+                  call e.g. may give too big values to
+                  include the result in the binary. Then it is not done.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell26"><span></span><span
+                    class="nb">range</span><span class="p">(</span><span
+                    class="mi">100000</span><span class="p">)</span>  <span class="c1"># We do not want this one to be expanded</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell26">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This is considered mostly implemented. Please file bugs for built-ins
+                    that are pre-computed, but should not be computed by Nuitka at
+                    compile time with specific values.</p>
+                </div>
+              </section>
+              <section id="conditional-statement-prediction">
+                <h3>Conditional Statement Prediction<a class="headerlink"
+                                                       href="https://nuitka.net/doc/user-manual.html#conditional-statement-prediction"
+                                                       title="Permalink to this headline"></a></h3>
+                <p>For conditional statements, some branches may not ever be taken, because
+                  of the conditions being possible to predict. In these cases, the branch
+                  not taken and the condition check is removed.</p>
+                <p>This can typically predict code like this:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell27"><span></span><span
+                    class="k">if</span> <span class="vm">__name__</span> <span
+                    class="o">==</span> <span class="s2">"__main__"</span><span
+                    class="p">:</span>
+    <span class="c1"># Your test code might be here</span>
+    <span class="n">use_something_not_use_by_program</span><span class="p">()</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell27">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>or</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell28"><span></span><span
+                    class="k">if</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="c1"># Your deactivated code might be here</span>
+    <span class="n">use_something_not_use_by_program</span><span class="p">()</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell28">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>It will also benefit from constant propagations, or enable them because
+                  once some branches have been removed, other things may become more
+                  predictable, so this can trigger other optimization to become possible.</p>
+                <p>Every branch removed makes optimization more likely. With some code
+                  branches removed, access patterns may be more friendly. Imagine e.g.
+                  that a function is only called in a removed branch. It may be possible
+                  to remove it entirely, and that may have other consequences too.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This is considered implemented, but for the maximum benefit, more
+                    constants need to be determined at compile time.</p>
+                </div>
+              </section>
+              <section id="exception-propagation">
+                <h3>Exception Propagation<a class="headerlink"
+                                            href="https://nuitka.net/doc/user-manual.html#exception-propagation"
+                                            title="Permalink to this headline"></a></h3>
+                <p>For exceptions that are determined at compile time, there is an
+                  expression that will simply do raise the exception. These can be
+                  propagated upwards, collecting potentially “side effects”, i.e. parts of
+                  expressions that were executed before it occurred, and still have to be
+                  executed.</p>
+                <p>Consider the following code:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell29"><span></span><span
+                    class="nb">print</span><span class="p">(</span><span class="n">side_effect_having</span><span
+                    class="p">()</span> <span class="o">+</span> <span class="p">(</span><span
+                    class="mi">1</span> <span class="o">/</span> <span class="mi">0</span><span
+                    class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">something_else</span><span class="p">())</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell29">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The <code class="docutils literal notranslate"><span class="pre">(1</span> <span
+                  class="pre">/</span> <span class="pre">0)</span></code> can be predicted to
+                  raise a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>
+                  exception, which will be propagated through the <code
+                    class="docutils literal notranslate"><span class="pre">+</span></code>
+                  operation. That
+                  part is just Constant Propagation as normal.</p>
+                <p>The call <code class="docutils literal notranslate"><span
+                  class="pre">side_effect_having()</span></code>
+                  will have to be retained though, but
+                  the <code class="docutils literal notranslate"><span class="pre">print</span></code>
+                  does not and can be turned into an explicit raise. The
+                  statement sequence can then be aborted and as such the
+                  <code class="docutils literal notranslate"><span
+                    class="pre">something_else</span></code> call needs no code generation or
+                  consideration
+                  anymore.</p>
+                <p>To that end, Nuitka works with a special node that raises an exception
+                  and is wrapped with a so-called “side_effects” expression, but yet can
+                  be used in the code as an expression having a value.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>The propagation of exceptions is mostly implemented but needs
+                    handling in every kind of operations, and not all of them might do it
+                    already. As work progresses or examples arise, the coverage will be
+                    extended. Feel free to generate bug reports with non-working
+                    examples.</p>
+                </div>
+              </section>
+              <section id="exception-scope-reduction">
+                <h3>Exception Scope Reduction<a class="headerlink"
+                                                href="https://nuitka.net/doc/user-manual.html#exception-scope-reduction"
+                                                title="Permalink to this headline"></a></h3>
+                <p>Consider the following code:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell30"><span></span><span
+                    class="k">try</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span
+                      class="mi">3</span><span class="p">,</span> <span
+                      class="n">b</span><span class="p">,</span> <span
+                      class="mi">0</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Will not be executed"</span><span
+                      class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span
+                      class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell30">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The <code class="docutils literal notranslate"><span class="pre">try</span></code>
+                  block is bigger than it needs to be. The statement <code
+                    class="docutils literal notranslate"><span class="pre">b</span> <span
+                    class="pre">=</span> <span class="pre">8</span></code>
+                  cannot cause a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>
+                  to be raised. As such it can be moved to
+                  outside the try without any risk.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell31"><span></span><span
+                    class="n">b</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span
+                      class="mi">3</span><span class="p">,</span> <span
+                      class="n">b</span><span class="p">,</span> <span
+                      class="mi">0</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Will not be executed"</span><span
+                      class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span
+                      class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell31">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This is considered done. For every kind of operation, we trace if it
+                    may raise an exception. We do however <em>not</em> track properly yet, what
+                    can do a <code class="docutils literal notranslate"><span
+                      class="pre">ValueError</span></code> and what cannot.</p>
+                </div>
+              </section>
+              <section id="exception-block-inlining">
+                <h3>Exception Block Inlining<a class="headerlink"
+                                               href="https://nuitka.net/doc/user-manual.html#exception-block-inlining"
+                                               title="Permalink to this headline"></a></h3>
+                <p>With the exception propagation, it then becomes possible to transform
+                  this code:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell32"><span></span><span
+                    class="k">try</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span
+                      class="mi">3</span><span class="p">,</span> <span
+                      class="n">b</span><span class="p">,</span> <span
+                      class="mi">0</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Will not be executed!"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span
+                      class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell32">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell33"><span></span><span
+                    class="k">try</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"range() step argument must not be zero"</span><span
+                      class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span
+                      class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell33">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>Which then can be lowered in complexity by avoiding the raise and catch
+                  of the exception, making it:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell34"><span></span><span
+                    class="n">e</span> <span class="o">=</span> <span
+                    class="ne">ValueError</span><span class="p">(</span><span class="s2">"range() step argument must not be zero"</span><span
+                    class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell34">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This is not implemented yet.</p>
+                </div>
+              </section>
+              <section id="empty-branch-removal">
+                <h3>Empty Branch Removal<a class="headerlink"
+                                           href="https://nuitka.net/doc/user-manual.html#empty-branch-removal"
+                                           title="Permalink to this headline"></a></h3>
+                <p>For loops and conditional statements that contain only code without
+                  effect, it should be possible to remove the whole construct:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell35"><span></span><span class="k">for</span> <span
+                    class="n">i</span> <span class="ow">in</span> <span
+                    class="nb">range</span><span class="p">(</span><span
+                    class="mi">1000</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell35">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The loop could be removed, at maximum, it should be considered an
+                  assignment of variable <code class="docutils literal notranslate"><span class="pre">i</span></code>
+                  to <code class="docutils literal notranslate"><span class="pre">999</span></code>
+                  and no more.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This is not implemented yet, as it requires us to track iterators,
+                    and their side effects, as well as loop values, and exit conditions.
+                    Too much yet, but we will get there.</p>
+                </div>
+                <p>Another example:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell36"><span></span><span
+                    class="k">if</span> <span class="n">side_effect_free</span><span
+                    class="p">:</span>
+    <span class="k">pass</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell36">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>The condition check should be removed in this case, as its evaluation is
+                  not needed. It may be difficult to predict that <code
+                    class="docutils literal notranslate"><span
+                    class="pre">side_effect_free</span></code> has
+                  no side effects, but many times this might be possible.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>This is considered implemented. The conditional statement nature is
+                    removed if both branches are empty, only the condition is evaluated
+                    and checked for truth (in cases that could raise an exception).</p>
+                </div>
+              </section>
+              <section id="unpacking-prediction">
+                <h3>Unpacking Prediction<a class="headerlink"
+                                           href="https://nuitka.net/doc/user-manual.html#unpacking-prediction"
+                                           title="Permalink to this headline"></a></h3>
+                <p>When the length of the right-hand side of an assignment to a sequence
+                  can be predicted, the unpacking can be replaced with multiple
+                  assignments.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell37"><span></span><span
+                    class="n">a</span><span class="p">,</span> <span class="n">b</span><span
+                    class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span
+                    class="mi">1</span><span class="p">,</span> <span
+                    class="n">side_effect_free</span><span class="p">(),</span> <span
+                    class="mi">3</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell37">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell38"><span></span><span
+                    class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">side_effect_free</span><span class="p">()</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell38">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>This is of course only really safe if the left-hand side cannot raise an
+                  exception while building the assignment targets.</p>
+                <p>We do this now, but only for constants, because we currently have no
+                  ability to predict if an expression can raise an exception or not.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>Not implemented yet. Will need us to see through the unpacking of
+                    what is an iteration over a tuple, we created ourselves. We are not
+                    there yet, but we will get there.</p>
+                </div>
+              </section>
+              <section id="built-in-type-inference">
+                <h3>Built-in Type Inference<a class="headerlink"
+                                              href="https://nuitka.net/doc/user-manual.html#built-in-type-inference"
+                                              title="Permalink to this headline"></a></h3>
+                <p>When a construct like <code class="docutils literal notranslate"><span
+                  class="pre">in</span> <span class="pre">xrange()</span></code> or <code
+                  class="docutils literal notranslate"><span class="pre">in</span> <span
+                  class="pre">range()</span></code> is used, it is
+                  possible to know what the iteration does and represent that so that
+                  iterator users can use that instead.</p>
+                <p>I consider that:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell39"><span></span><span class="k">for</span> <span
+                    class="n">i</span> <span class="ow">in</span> <span
+                    class="n">xrange</span><span class="p">(</span><span
+                    class="mi">1000</span><span class="p">):</span>
+    <span class="n">something</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell39">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>could translate <code class="docutils literal notranslate"><span
+                  class="pre">xrange(1000)</span></code>
+                  into an object of a special class that
+                  does the integer looping more efficiently. In case <code
+                    class="docutils literal notranslate"><span class="pre">i</span></code> is
+                  only
+                  assigned from there, this could be a nice case for a dedicated class.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>Future work, not even started.</p>
+                </div>
+              </section>
+              <section id="quicker-function-calls">
+                <h3>Quicker Function Calls<a class="headerlink"
+                                             href="https://nuitka.net/doc/user-manual.html#quicker-function-calls"
+                                             title="Permalink to this headline"></a></h3>
+                <p>Functions are structured so that their parameter parsing and <code
+                  class="docutils literal notranslate"><span class="pre">tp_call</span></code>
+                  interface is separate from the actual function code. This way the call
+                  can be optimized away. One problem is that the evaluation order can
+                  differ.</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell40"><span></span><span class="k">def</span> <span
+                    class="nf">f</span><span class="p">(</span><span class="n">a</span><span
+                    class="p">,</span> <span class="n">b</span><span class="p">,</span> <span
+                    class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span
+                      class="p">,</span> <span class="n">c</span>
+
+
+<span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span
+                      class="n">get1</span><span class="p">(),</span> <span class="n">b</span><span
+                      class="o">=</span><span class="n">get2</span><span class="p">(),</span> <span
+                      class="n">a</span><span class="o">=</span><span
+                      class="n">get3</span><span class="p">())</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell40">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>This will have to evaluate first <code class="docutils literal notranslate"><span
+                  class="pre">get1()</span></code>, then <code
+                  class="docutils literal notranslate"><span class="pre">get2()</span></code> and
+                  only
+                  then <code class="docutils literal notranslate"><span
+                    class="pre">get3()</span></code> and then make the function call with these
+                  values.</p>
+                <p>Therefore it will be necessary to have a staging of the parameters
+                  before making the actual call, to avoid a re-ordering of the calls to
+                  <code class="docutils literal notranslate"><span class="pre">get1()</span></code>,
+                  <code class="docutils literal notranslate"><span class="pre">get2()</span></code>,
+                  and <code class="docutils literal notranslate"><span
+                    class="pre">get3()</span></code>.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>Not even started. A re-formulation that avoids the dictionary to call
+                    the function, and instead uses temporary variables appears to be
+                    relatively straight forward once we do that kind of parameter
+                    analysis.</p>
+                </div>
+              </section>
+              <section id="lowering-of-iterated-container-types">
+                <h3>Lowering of iterated Container Types<a class="headerlink"
+                                                           href="https://nuitka.net/doc/user-manual.html#lowering-of-iterated-container-types"
+                                                           title="Permalink to this headline"></a></h3>
+                <p>In some cases, accesses to <code class="docutils literal notranslate"><span
+                  class="pre">list</span></code> constants can become <code
+                  class="docutils literal notranslate"><span class="pre">tuple</span></code>
+                  constants instead.</p>
+                <p>Consider that:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell41"><span></span><span class="k">for</span> <span
+                    class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span
+                    class="n">a</span><span class="p">,</span> <span class="n">b</span><span
+                    class="p">,</span> <span class="n">c</span><span class="p">]:</span>
+    <span class="n">something</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell41">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>Can be optimized into this:</p>
+                <div class="highlight-python notranslate">
+                  <div class="highlight"><pre id="codecell42"><span></span><span class="k">for</span> <span
+                    class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span
+                    class="n">a</span><span class="p">,</span> <span class="n">b</span><span
+                    class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">something</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre>
+                    <button class="copybtn o-tooltip--left" data-tooltip="Copy"
+                            data-clipboard-target="#codecell42">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-copy" width="44" height="44"
+                           viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                           stroke-linecap="round" stroke-linejoin="round">
+                        <title>Copy to clipboard</title>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p>This allows for simpler, faster code to be generated, and fewer checks
+                  needed, because e.g. the <code class="docutils literal notranslate"><span
+                    class="pre">tuple</span></code> is clearly immutable, whereas the
+                  <code class="docutils literal notranslate"><span class="pre">list</span></code>
+                  needs a check to assert that. This is also possible for sets.</p>
+                <div class="admonition-status admonition">
+                  <p class="admonition-title">Status</p>
+                  <p>Implemented, even works for non-constants. Needs other optimization
+                    to become generally useful, and will itself help other optimization
+                    to become possible. This allows us to e.g. only treat iteration over
+                    tuples, and not care about sets.</p>
+                </div>
+                <p>In theory, something similar is also possible for <code
+                  class="docutils literal notranslate"><span class="pre">dict</span></code>. For
+                  the
+                  later, it will be non-trivial though to maintain the order of execution
+                  without temporary values introduced. The same thing is done for pure
+                  constants of these types, they change to <code class="docutils literal notranslate"><span
+                    class="pre">tuple</span></code> values when iterated.</p>
+              </section>
+            </section>
+            <section id="updates-for-this-manual">
+              <h2>Updates for this Manual<a class="headerlink"
+                                            href="https://nuitka.net/doc/user-manual.html#updates-for-this-manual"
+                                            title="Permalink to this headline"></a></h2>
+              <p>This document is written in REST. That is an ASCII format which is
+                readable to human, but easily used to generate PDF or HTML documents.</p>
+              <p>You will find the current version at:
+                <a class="reference external" href="https://nuitka.net/doc/user-manual.html">https://nuitka.net/doc/user-manual.html</a>
+              </p>
+              <p>And the current PDF under: <a class="reference external"
+                                               href="https://nuitka.net/doc/README.pdf">https://nuitka.net/doc/README.pdf</a>
+              </p>
+            </section>
+          </section>
+          <div class="section">
+          </div>
+        </div>
+      </div>
+      <footer>
+        <hr>
+        <div role="contentinfo">
+          <p>© Copyright 2022, Kay Hayen and Nuitka Contributors.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  </section>
+</div>
+<script defer="" src="./Nuitka User Manual_files/v652eace1692a40cfa3763df669d7439c1639079717194"
+        integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw=="
+        data-cf-beacon="{&quot;rayId&quot;:&quot;6df7a3a219ea6be7&quot;,&quot;token&quot;:&quot;9e3953734d794d74aedc409e5994f3d7&quot;,&quot;version&quot;:&quot;2021.12.0&quot;,&quot;si&quot;:100}"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
